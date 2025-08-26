@@ -1,0 +1,145 @@
+.banner-section {
+background: linear-gradient(to right, rgba(0, 0, 0, 0.845), rgba(0, 0, 0, 0.511)), 
+            url("../../assets/images/CTA-BG-img1.jpg");  background-size: cover;
+  background-position: center;
+  padding: 80px 40px;
+  border-radius: 12px;
+  min-height: 600px;
+  margin: 40px 32px;
+  position: relative;
+  overflow: hidden;
+}
+.banner-container{
+  background-color: #f5f7fa !important;
+
+}
+.intro-statement {
+  font-size: 1rem;
+  color: #ffffffcc;
+  margin-bottom: 10px;
+  max-width: 700px;
+  line-height: 1.6;
+  font-weight: 500;
+  margin-left: auto;
+  margin-right: auto;
+  padding-left: 0; 
+  text-align: left; 
+}
+
+.highlight-green {
+  color: #4CAF50; 
+  font-weight: 600;
+}
+
+.stats-separator {
+  height: 1px;
+  background-color: #546b9b80; /* Green line */
+  width: 1000px;
+  margin: 100px auto 50px auto; /* top, right/left, bottom spacing */
+  border-radius: 2px;
+}
+
+
+.banner-content {
+  color: #fff;
+  text-align: left;
+  max-width: 1000px;
+  margin: 0 auto;
+}
+
+.banner-content h1 {
+  font-size: 3rem;
+  margin-bottom: 20px;
+  font-weight: bold;
+  line-height: 1.3;
+  margin-top: 80px;
+}
+
+.work-button {
+  background-color: white;
+  color: #0e131f;
+  border: none;
+  padding: 12px 24px;
+  font-weight: 600;
+  border-radius: 4px;
+  cursor: pointer;
+  transition: 0.3s;
+  margin-top: 30px;
+}
+
+.work-button:hover {
+  background-color: #ddd;
+}
+
+.banner-stats {
+  display: flex;
+  justify-content: space-between;
+  gap: 30px;
+  margin-top: 60px;
+  flex-wrap: nowrap;
+  flex-shrink: 0;
+}
+
+.stat-box {
+  flex: 1 1 18%;
+  text-align: left;
+  min-width: 150px;
+}
+
+
+
+.stat-box h3 {
+  font-size: 2rem;
+  margin-bottom: 5px;
+}
+
+.stat-box p {
+  font-size: 0.9rem;
+  color: #ccc;
+}
+
+/* ↓↓↓ MEDIA QUERIES ↓↓↓ */
+
+@media (max-width: 1010px) {
+  .banner-stats {
+    flex-wrap: wrap;
+    justify-content: center;
+  }
+
+  .stat-box {
+    width: 30%; /* 3 in one row */
+    text-align: center;
+  }
+}
+
+@media (max-width: 710px) {
+  .stat-box {
+    width: 45%; /* 2 per row */
+    text-align: center;
+  }
+}
+@media (max-width: 1024px) {
+  .intro-statement {
+    margin-left: 0;     /* stick to left on smaller screens */
+    padding-left: 0;    /* no inner indent */
+    text-align: left;
+  }
+}
+@media (max-width: 768px) {
+  .intro-statement {
+    margin-left: 0;
+    margin-right: 0;
+    padding-left: 0;
+    text-align: left;
+  }
+}
+
+@media (max-width: 600px) {
+  .stat-box {
+    width: 100%; /* 1 per row */
+  }
+
+  .banner-stats {
+    gap: 20px;
+  }
+}

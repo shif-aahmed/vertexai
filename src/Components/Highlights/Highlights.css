@@ -1,0 +1,156 @@
+.component{
+    background-color: #f5f7fa !important;
+}
+.component-wrapper {
+  margin: 32px 20px 0px 20px;
+  padding-bottom: 32px;
+}
+
+.heading {
+  margin-bottom: 50px;
+}
+
+.header h3 {
+  font-size: 2.5rem;
+  font-weight: 700;
+  color: #0d3b66;
+
+}
+
+.slider-buttons {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.slide-btn {
+  background-color: #ffffff;
+  border: 1px solid #969696;
+  padding: 6px 10px;
+  font-size: 1rem;
+  border-radius: 50%;
+  cursor: pointer;
+  transition: background 0.3s ease;
+}
+
+.slide-btn:hover {
+  background-color: #00133d;
+  color: white;
+  border: none;
+}
+
+.slider-container2 {
+  display: flex;
+  overflow-x: auto;
+  scroll-behavior: smooth;
+  gap: 1rem;
+  border-radius: 20px;
+}
+
+.slider-container2::-webkit-scrollbar {
+  display: none;
+}
+
+.box {
+  min-width: 680px;
+  height: 450px;
+  border-radius: 20px;
+  color: #fff;
+  padding: 20px;
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+  position: relative;
+  overflow: hidden;
+}
+
+.box::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(0, 0, 0, 0);
+  transition: background 0.3s ease;
+  border-radius: 20px;
+  z-index: 1;
+}
+
+.box:hover::before {
+  background: rgba(0, 0, 0, 0.594);
+}
+
+.cs_body, .cs_footer {
+  position: relative;
+  z-index: 2;
+}
+
+.cs_body {
+  position: relative;
+  bottom: -200px;
+  transition: bottom 0.3s ease-out;
+}
+
+.box:hover .cs_body {
+  bottom: -150px;
+}
+
+.cs_footer {
+  display: none;
+  transition: opacity 0.3s ease-in-out;
+}
+
+.box:hover .cs_footer {
+  display: block;
+  opacity: 1;
+}
+
+.kpis {
+  display: flex;
+  justify-content: space-between;
+  width: 80%;
+}
+
+.cs_footer .cs_desc {
+  width: 70%;
+  font-size: clamp(14px, 1vw, 16px);
+  font-weight: 500;
+  overflow: hidden;
+}
+
+@media (max-width: 1032px) {
+  .slider-buttons {
+    display: none !important;
+  }
+}
+
+@media (max-width: 750px) {
+  .slider-container2 {
+    flex-direction: row;
+    overflow-x: auto;
+    overflow-y: hidden;
+    scroll-behavior: smooth;
+    gap: 1rem;
+    padding-bottom: 8px;
+  }
+
+  .slider-container2::-webkit-scrollbar {
+    height: 8px;
+  }
+
+  .slider-container2::-webkit-scrollbar-track {
+    background: rgba(255, 255, 255, 0.1);
+    border-radius: 4px;
+  }
+
+  .slider-container2::-webkit-scrollbar-thumb {
+    background: rgba(255, 255, 255, 0.4);
+    border-radius: 4px;
+  }
+
+  .box {
+    flex: 0 0 auto;
+    min-width: 80%;
+  }
+}

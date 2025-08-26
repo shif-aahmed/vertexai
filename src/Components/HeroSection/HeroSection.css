@@ -1,0 +1,212 @@
+.hero-section {
+  position: relative;
+  overflow: hidden;
+  background-color: #000b1a;
+  color: white;
+  padding: 100px 20px 0px; 
+  /* margin: 0 auto; */
+  border-radius: 10px;
+}
+.hero-wrapper{
+  background-color: #f5f7fa !important;
+  padding: 32px 25px 5rem !important;
+}
+.bg-pattern-layer {
+  position: absolute;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  left: 0;
+  background-image: url("../../assets/images/hero-pattern.png");
+  background-repeat: no-repeat;
+  background-size: contain;
+  background-position: right top;
+  filter: grayscale(100%) brightness(70%);
+  z-index: 0;
+}
+
+.hero-content {
+  position: relative;
+  z-index: 1;
+  /* max-width: 1200px; */
+  margin: 0 auto;
+  padding: 0 20px; /* Responsive side spacing */
+}
+
+.hero-title {
+  font-size: 3.6rem;
+  font-weight: bold;
+  line-height: 1.1;
+}
+
+.highlight {
+  color: white;
+}
+
+.hero-subtext {
+  font-size: 1.4rem;
+  font-weight: 400;
+  margin-top: 50px;
+  margin-bottom: 40px;
+}
+
+.hero-button {
+  background-color: white;
+  color: #0e131f;
+  border: none;
+  padding: 17px 30px;
+  font-weight: bold;
+  border-radius: 10px;
+  cursor: pointer;
+  transition: 0.3s;
+}
+
+.hero-button:hover {
+  background-color: #ddd;
+}
+
+.clients-awards-container {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-top: 100px;
+  margin-bottom: 20px;
+  width: 100%;
+}
+
+.clients-section {
+  margin-top: 0;
+  margin-right: 20px;
+}
+
+.clients-label {
+  font-size: 0.9rem;
+  font-weight: 500;
+  color: #fdfcfc;
+  margin-bottom: 10px;
+}
+
+.client-logos span {
+  margin-right: 25px;
+  font-weight: bold;
+  color: white;
+}
+
+.awards-section {
+  margin-top: 0;
+
+}
+
+.awards-label {
+  font-size: 0.9rem;
+  font-weight: 500;
+  color: #f8f7f7;
+  margin-bottom: 10px;
+}
+
+.awards-logos span {
+  margin-right: 20px;
+  font-weight: bold;
+  color: white;
+}
+
+.hero-wrapper {
+  background-color: white;
+  padding: 20px 0;
+}
+ @media (max-width: 600px) {
+  .bg-pattern-layer {
+    background-size: cover;
+    background-position: top right;
+  }
+}
+
+/* 📱 Responsive: Tablets and small laptops */
+@media (max-width: 1000px) {
+  .clients-awards-container {
+    justify-content: center;
+    text-align: center;
+    flex-direction: column;
+    align-items: center;
+    gap: 40px;
+  }
+
+  .awards-section {
+    display: none;
+  }
+
+  .clients-section {
+    margin: 0;
+  }
+
+  .client-logos {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 12px;
+  }
+
+  .client-logos span {
+    margin-right: 15px;
+    font-size: 0.85rem;
+  }
+
+  .clients-label {
+    font-size: 0.8rem;
+  }
+
+  .hero-title {
+    font-size: 2.8rem;
+    text-align: center;
+  }
+
+  .hero-subtext {
+    font-size: 1.2rem;
+    text-align: center;
+  }
+
+  .hero-button {
+    margin: 0 auto;
+    display: block;
+  }
+}
+
+/* 📱 Mobile screens */
+@media (max-width: 769px) {
+  .hero-section {
+    padding: 60px 16px 80px;
+  }
+
+  .hero-title {
+    font-size: 2.1rem;
+  }
+
+  .hero-subtext {
+    font-size: 1.1rem;
+  }
+
+  .clients-label {
+    font-size: 0.75rem;
+  }
+
+  .client-logos span {
+    font-size: 0.8rem;
+    margin-right: 10px;
+  }
+}
+
+/* 🛠 Fix awkward spacing between 771px–821px */
+@media (max-width: 821px) and (min-width: 771px) {
+  .hero-section {
+    padding: 70px 16px 80px;
+  }
+
+  .hero-title {
+    font-size: 2.5rem;
+  }
+
+  .hero-subtext {
+    font-size: 1.25rem;
+  }
+ 
+}
