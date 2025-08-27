@@ -1,5 +1,5 @@
 import React from 'react';
-import { FaLink, FaFacebookF, FaInstagram, FaYoutube, FaTiktok } from 'react-icons/fa'; // Added icons
+import {  FaFacebookF, FaInstagram, FaLinkedin, FaWhatsapp } from 'react-icons/fa'; // Added icons
 import './Footer.css';
 
 const Footer = () => {
@@ -34,12 +34,20 @@ const Footer = () => {
           <div className="footer-social col-12 col-md-3">
             <h4>Follow Us</h4>
             <div className="social-icons">
-              <a href="#"><FaLink /></a>
-              <a href="https://www.facebook.com/profile.php?id=61579347417539"><FaFacebookF /></a>
-              <a href="#"><FaInstagram /></a>
-              <a href="#"><FaYoutube /></a>
-              <a href="#"><FaTiktok /></a>
+              <a href="https://www.facebook.com/profile.php?id=61579347417539">
+                <FaFacebookF />
+              </a>
+              <a href="#">
+                <FaWhatsapp />
+              </a>
+              <a href="https://www.linkedin.com/company/vertexai-tec">
+                <FaLinkedin />
+              </a>
+              <a href="https://www.instagram.com/vertexaitech/">
+                <FaInstagram />
+              </a>
             </div>
+
           </div>
         </div>
       </div>
