@@ -26,6 +26,7 @@ const servicesData = [
       "AI-Powered Applications",
       "Cloud AI Solutions",
       "Vertex AI Deployment",
+      "Web Development", // Added
     ],
   },
   {
@@ -39,6 +40,8 @@ const servicesData = [
       "Training & Fine-Tuning",
       "Managed MLOps",
       "Vertex AI Studio",
+      "Web Designing", // Added
+      "UI/UX Design", // Added
     ],
   },
   {
@@ -48,6 +51,7 @@ const servicesData = [
       "Model Evaluation & Audit",
       "AI Accuracy Testing",
       "Monitoring & Drift Detection",
+      "Marketing", // Added
     ],
   }
 ];
@@ -73,7 +77,6 @@ const Services = () => {
     setIsLoading(true);
 
     try {
-      // Replace this URL with  actual API 
       const response = await fetch("https://your-api-endpoint.com/chat", {
         method: "POST",
         headers: {

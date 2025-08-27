@@ -35,7 +35,7 @@ const Footer = () => {
             <h4>Follow Us</h4>
             <div className="social-icons">
               <a href="#"><FaLink /></a>
-              <a href="#"><FaFacebookF /></a>
+              <a href="https://www.facebook.com/profile.php?id=61579347417539"><FaFacebookF /></a>
               <a href="#"><FaInstagram /></a>
               <a href="#"><FaYoutube /></a>
               <a href="#"><FaTiktok /></a>
