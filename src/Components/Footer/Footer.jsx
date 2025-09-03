@@ -37,9 +37,14 @@ const Footer = () => {
               <a href="https://www.facebook.com/profile.php?id=61579347417539">
                 <FaFacebookF />
               </a>
-              <a href="#">
+              <a 
+                href="https://wa.me/923390107478" 
+                target="_blank" 
+                rel="noopener noreferrer"
+              >
                 <FaWhatsapp />
               </a>
+
               <a href="https://www.linkedin.com/company/vertexai-tec">
                 <FaLinkedin />
               </a>
