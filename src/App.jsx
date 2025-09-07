@@ -7,7 +7,7 @@ function App() {
     <Router>
       <Routes>
         <Route path="/" element={<HomePg />} />
-        <Route path="/blog/:id" element={<BlogDetail />} />
+        {/* <Route path="/blog/:id" element={<BlogDetail />} /> */}
         {/* <Route path="#blogs" element={<h2>Page Not Found</h2>} /> */}
       </Routes>
     </Router>
