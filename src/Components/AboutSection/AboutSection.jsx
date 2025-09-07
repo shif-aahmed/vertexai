@@ -76,10 +76,12 @@ const AboutSection = () => {
         </div>
 
         <div className="about-image">
-          <img
-            src={aboutImg} // use imported image
-            alt="Vertex AI Tech"
-          />
+<img 
+  src={aboutImg} 
+  alt="Vertex AI Tech" 
+  loading="lazy" 
+  style={{ maxWidth: '100%', height: 'auto' }} 
+/>
         </div>
       </div>
     </section>
