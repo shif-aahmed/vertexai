@@ -1,36 +1,104 @@
+/* HeroSection.css */
 .hero-section {
   position: relative;
-  overflow: hidden;
-  background-color: #000b1a;
+  overflow-y: hidden !important;
   color: white;
-  padding: 100px 20px 0px; 
-  /* margin: 0 auto; */
-  border-radius: 10px;
+  padding: 100px 20px 0px;
+  /* border-radius: 10px; */
+  perspective: 1000px;
+  transform-style: preserve-3d;
+  height: 85vh;
+background: linear-gradient( #000b1a 40%, #011d45 60%);
 }
-.hero-wrapper{
+
+.hero-wrapper {
   background-color: #f5f7fa !important;
-  padding: 32px 25px 5rem !important;
+  /* padding: 32px 25px 5rem !important; */
+clip-path: polygon(0 0, 100% 0, 100% 100%, 0 80%);
+  overflow-y: hidden !important;
+
 }
+
+#universe {
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  overflow: hidden;
+  z-index: 0;
+}
+
+.star0 {
+  height: 1px;
+  width: 1px;
+  opacity: 1;
+  position: absolute;
+}
+
+.star1 {
+  height: 2px;
+  width: 2px;
+  border-radius: 50%;
+  opacity: 1;
+  position: absolute;
+}
+
+.star2 {
+  height: 3px;
+  width: 3px;
+  border-radius: 50%;
+  opacity: 1;
+  position: absolute;
+}
+
+.star3 {
+  height: 4px;
+  width: 4px;
+  border-radius: 50%;
+  opacity: 1;
+  position: absolute;
+}
+
 .bg-pattern-layer {
   position: absolute;
   top: 0;
   right: 0;
   bottom: 0;
   left: 0;
-  background-image: url("../../assets/images/hero-pattern.png");
+  /* background-image: url("../../assets/images/hero-pattern.png"); */
   background-repeat: no-repeat;
   background-size: contain;
   background-position: right top;
   filter: grayscale(100%) brightness(70%);
   z-index: 0;
+  animation: pattern-move 15s ease-in-out infinite alternate;
 }
+
 
 .hero-content {
   position: relative;
   z-index: 1;
-  /* max-width: 1200px; */
   margin: 0 auto;
-  padding: 0 20px; /* Responsive side spacing */
+  padding: 0 20px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  position: relative;
+  margin-top: 20px;
+}
+
+.hero-title, .hero-subtext, .clients-awards-container {
+  opacity: 0;
+  transform: translateY(30px);
+  transition: all 1s ease-out;
+}
+
+.animate-visible {
+  opacity: 1 !important;
+  transform: translateY(0px) !important;
 }
 
 .hero-title {
@@ -48,21 +116,21 @@
   font-weight: 400;
   margin-top: 50px;
   margin-bottom: 40px;
+  padding: 0 160px;
+}
+/* Add this to HeroSection.css */
+
+.hero-title,
+.hero-subtext,
+.clients-awards-container {
+  opacity: 0;
+  transform: translateY(30px);
+  transition: opacity 1s ease-out, transform 1s ease-out;
 }
 
-.hero-button {
-  background-color: white;
-  color: #0e131f;
-  border: none;
-  padding: 17px 30px;
-  font-weight: bold;
-  border-radius: 10px;
-  cursor: pointer;
-  transition: 0.3s;
-}
-
-.hero-button:hover {
-  background-color: #ddd;
+.animate-visible {
+  opacity: 1;
+  transform: translateY(0);
 }
 
 .clients-awards-container {
@@ -72,6 +140,7 @@
   margin-top: 100px;
   margin-bottom: 20px;
   width: 100%;
+  transition: all 1s ease-out;
 }
 
 .clients-section {
@@ -90,11 +159,14 @@
   margin-right: 25px;
   font-weight: bold;
   color: white;
+  cursor: pointer;
+  transition: transform 0.3s, color 0.3s;
+  cursor: default;
 }
 
-.awards-section {
-  margin-top: 0;
 
+.awards-section1 {
+  margin-top: 0;
 }
 
 .awards-label {
@@ -108,20 +180,14 @@
   margin-right: 20px;
   font-weight: bold;
   color: white;
+  cursor: pointer;
+  transition: transform 0.3s, color 0.3s;
+    cursor: default;
+
 }
 
-.hero-wrapper {
-  background-color: white;
-  padding: 20px 0;
-}
- @media (max-width: 600px) {
-  .bg-pattern-layer {
-    background-size: cover;
-    background-position: top right;
-  }
-}
 
-/* 📱 Responsive: Tablets and small laptops */
+/* Responsive adjustments remain the same */
 @media (max-width: 1000px) {
   .clients-awards-container {
     justify-content: center;
@@ -130,83 +196,24 @@
     align-items: center;
     gap: 40px;
   }
-
-  .awards-section {
-    display: none;
-  }
-
-  .clients-section {
-    margin: 0;
-  }
-
+  .awards-section1 { display: none; }
+  .clients-section { margin: 0; }
   .client-logos {
     display: flex;
     flex-wrap: wrap;
     justify-content: center;
     gap: 12px;
   }
-
-  .client-logos span {
-    margin-right: 15px;
-    font-size: 0.85rem;
-  }
-
-  .clients-label {
-    font-size: 0.8rem;
-  }
-
-  .hero-title {
-    font-size: 2.8rem;
-    text-align: center;
-  }
-
-  .hero-subtext {
-    font-size: 1.2rem;
-    text-align: center;
-  }
-
-  .hero-button {
-    margin: 0 auto;
-    display: block;
-  }
+  .client-logos span { margin-right: 15px; font-size: 0.85rem; }
+  .clients-label { font-size: 0.8rem; }
+  .hero-title { font-size: 2.8rem; text-align: center; }
+  .hero-subtext { font-size: 1.2rem; text-align: center; }
 }
 
-/* 📱 Mobile screens */
 @media (max-width: 769px) {
-  .hero-section {
-    padding: 60px 16px 80px;
-  }
-
-  .hero-title {
-    font-size: 2.1rem;
-  }
-
-  .hero-subtext {
-    font-size: 1.1rem;
-  }
-
-  .clients-label {
-    font-size: 0.75rem;
-  }
-
-  .client-logos span {
-    font-size: 0.8rem;
-    margin-right: 10px;
-  }
-}
-
-/* 🛠 Fix awkward spacing between 771px–821px */
-@media (max-width: 821px) and (min-width: 771px) {
-  .hero-section {
-    padding: 70px 16px 80px;
-  }
-
-  .hero-title {
-    font-size: 2.5rem;
-  }
-
-  .hero-subtext {
-    font-size: 1.25rem;
-  }
- 
+  .hero-section { padding: 60px 16px 80px; }
+  .hero-title { font-size: 2.1rem; }
+  .hero-subtext { font-size: 1.1rem; }
+  .clients-label { font-size: 0.75rem; }
+  .client-logos span { font-size: 0.8rem; margin-right: 10px; }
 }

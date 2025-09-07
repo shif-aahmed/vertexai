@@ -1,5 +1,12 @@
-import React, { useState } from "react";
-import { FaLightbulb, FaCogs, FaBrain, FaChartLine } from "react-icons/fa";
+import React, { useEffect, useRef, useState } from "react";
+import {
+  FaLightbulb,
+  FaCogs,
+  FaBrain,
+  FaChartLine,
+  FaRocket,
+  FaHandsHelping,
+} from "react-icons/fa";
 import "./Services.css";
 
 const servicesData = [
@@ -26,7 +33,7 @@ const servicesData = [
       "AI-Powered Applications",
       "Cloud AI Solutions",
       "Vertex AI Deployment",
-      "Web Development", // Added
+      "Web Development",
     ],
   },
   {
@@ -40,8 +47,8 @@ const servicesData = [
       "Training & Fine-Tuning",
       "Managed MLOps",
       "Vertex AI Studio",
-      "Web Designing", // Added
-      "UI/UX Design", // Added
+      "Web Designing",
+      "UI/UX Design",
     ],
   },
   {
@@ -51,43 +58,110 @@ const servicesData = [
       "Model Evaluation & Audit",
       "AI Accuracy Testing",
       "Monitoring & Drift Detection",
-      "Marketing", // Added
+      "Marketing & Growth Analysis",
     ],
-  }
+  },
+  {
+    title: "Deployment & Integration",
+    icon: <FaRocket />,
+    items: [
+      "Seamless AI Deployment",
+      "API & SDK Integration",
+      "Cloud-Native Deployment",
+      "Vertex AI CI/CD Pipelines",
+      "Third-Party Service Integration",
+    ],
+  },
+  {
+    title: "Support & Maintenance",
+    icon: <FaHandsHelping />,
+    items: [
+      "24/7 AI System Monitoring",
+      "Troubleshooting & Bug Fixes",
+      "Performance Enhancements",
+      "Long-Term Maintenance",
+      "Dedicated Support Team",
+    ],
+  },
 ];
 
 const Services = () => {
+  const cardsRef = useRef([]);
   const [isChatOpen, setIsChatOpen] = useState(false);
   const [messages, setMessages] = useState([
-    { text: "Hello! How can we help you today?", sender: "bot" }
+    { text: "Hello! How can we help you today?", sender: "bot" },
   ]);
   const [inputMessage, setInputMessage] = useState("");
   const [isLoading, setIsLoading] = useState(false);
 
-  const toggleChat = () => {
-    setIsChatOpen(!isChatOpen);
-  };
+  useEffect(() => {
+    // Intersection Observer for cards
+    const observer = new IntersectionObserver(
+      (entries) => {
+        entries.forEach((entry) => {
+          if (entry.isIntersecting) {
+            entry.target.classList.add("visible");
+          }
+        });
+      },
+      { threshold: 0.2 }
+    );
+
+    cardsRef.current.forEach((card) => {
+      if (card) observer.observe(card);
+    });
+
+    // Letter-by-letter animation for Services Heading
+    const heading = document.querySelector(".services-heading");
+    if (heading) {
+      const text = heading.textContent;
+      heading.textContent = "";
+      text.split("").forEach((char, i) => {
+        const span = document.createElement("span");
+        span.textContent = char === " " ? "\u00A0" : char;
+        span.style.opacity = 0;
+        span.style.display = "inline-block";
+        span.style.transition = `opacity 0.5s ease ${i * 0.05}s, transform 0.5s ease ${i * 0.05}s`;
+        span.style.transform = "translateY(20px)";
+        heading.appendChild(span);
+      });
+
+      const spans = heading.querySelectorAll("span");
+      const headingObserver = new IntersectionObserver(
+        (entries) => {
+          entries.forEach((entry) => {
+            if (entry.isIntersecting) {
+              spans.forEach((span) => {
+                span.style.opacity = 1;
+                span.style.transform = "translateY(0)";
+              });
+            }
+          });
+        },
+        { threshold: 0.3 }
+      );
+      headingObserver.observe(heading);
+    }
+  }, []);
+
+  const toggleChat = () => setIsChatOpen(!isChatOpen);
 
   const handleSendMessage = async () => {
-    if (inputMessage.trim() === "") return;
+    if (!inputMessage.trim()) return;
 
-    const userMessage = { text: inputMessage, sender: "user" };
-    setMessages((prev) => [...prev, userMessage]);
+    setMessages((prev) => [...prev, { text: inputMessage, sender: "user" }]);
     setInputMessage("");
     setIsLoading(true);
 
     try {
       const response = await fetch("https://your-api-endpoint.com/chat", {
         method: "POST",
-        headers: {
-          "Content-Type": "application/json",
-        },
+        headers: { "Content-Type": "application/json" },
         body: JSON.stringify({ message: inputMessage }),
       });
 
       const data = await response.json();
       const botReply = data.reply || "Sorry, I couldn't process that right now.";
-
       setMessages((prev) => [...prev, { text: botReply, sender: "bot" }]);
     } catch (error) {
       setMessages((prev) => [
@@ -99,38 +173,56 @@ const Services = () => {
     }
   };
 
-  const handleKeyPress = (e) => {
-    if (e.key === "Enter") handleSendMessage();
-  };
+  const handleKeyPress = (e) => e.key === "Enter" && handleSendMessage();
 
   return (
     <section className="services" id="services">
       <h2 className="services-heading">Our Services</h2>
 
       <div className="services-grid">
-        {servicesData.map((service, index) => (
-          <div key={index} className="service-card">
-            <div className="service-icon">{service.icon}</div>
-            <h4>{service.title}</h4>
-            <ul>
-              {service.items.map((item, idx) => (
-                <li key={idx}>{item}</li>
-              ))}
-            </ul>
-          </div>
-        ))}
+        {servicesData.map((service, index) => {
+          let animationClass = "from-bottom";
+          if (window.innerWidth >= 1000) {
+            animationClass =
+              index % 3 === 0
+                ? "from-left"
+                : index % 3 === 2
+                ? "from-right"
+                : "from-bottom";
+          } else if (window.innerWidth >= 768) {
+            animationClass = index % 2 === 0 ? "from-left" : "from-right";
+          } else {
+            animationClass = index % 2 === 0 ? "from-left" : "from-right";
+          }
+
+          return (
+            <div
+              key={index}
+              ref={(el) => (cardsRef.current[index] = el)}
+              className={`service-card ${animationClass}`}
+            >
+              <div className="service-icon">{service.icon}</div>
+              <h4>{service.title}</h4>
+              <ul>
+                {service.items.map((item, idx) => (
+                  <li key={idx}>{item}</li>
+                ))}
+              </ul>
+            </div>
+          );
+        })}
       </div>
 
-      {/* Chat Button */}
       <button className="chat-button" onClick={toggleChat}>
         Chat with Us
       </button>
 
-      {/* Chat Bot */}
-      <div className={`chatbot-container ${isChatOpen ? 'open' : ''}`}>
+      <div className={`chatbot-container ${isChatOpen ? "open" : ""}`}>
         <div className="chatbot-header">
           <h3>Vertex AI</h3>
-          <button className="close-chat" onClick={toggleChat}>×</button>
+          <button className="close-chat" onClick={toggleChat}>
+            ×
+          </button>
         </div>
         <div className="chatbot-messages">
           {messages.map((message, index) => (

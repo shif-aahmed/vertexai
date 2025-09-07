@@ -12,8 +12,6 @@ html, body {
   width: 100%;
   overflow-x: hidden;
 }
-
-/* Containers should not exceed viewport */
 .container-class, .wrapper-class {
   max-width: 100vw;
 }

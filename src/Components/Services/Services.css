@@ -1,97 +1,204 @@
+/* 🌟 General Services Section */
 .services {
-  background: #f5f7fa;
-  color: #1a1a1a;
   padding: 80px 20px;
-  font-family: 'Inter', 'Segoe UI', sans-serif;
+  /* background: linear-gradient(135deg, #0f172a, #1e293b); */
+  background-color: white;
+  color: #f8fafc;
+  text-align: center;
+  position: relative;
+  overflow: hidden;
 }
 
 .services-heading {
-  text-align: center;
-  font-size: 3rem;
-  margin-bottom: 60px;
-  color: #0d3b66;
-  font-weight: 700;
+  font-size: 2.8rem;
+  font-weight: 600;
+  margin-bottom: 50px;
+  color: #0d3b66 !important;
+  position: relative;
+  display: inline-block;
 }
 
-/* Grid for cards */
+.services-heading::after {
+  content: "";
+  display: block;
+  width: 70px;
+  height: 4px;
+  margin: 12px auto 0;
+  background: linear-gradient(to right, #011d45, #0060e6);
+  border-radius: 2px;
+}
+
+/* 🌟 Grid Layout */
 .services-grid {
   display: grid;
-  grid-template-columns: repeat(3, 1fr); 
-  gap: 40px;
-  justify-items: stretch;
-  align-items: stretch;
+  gap: 30px;
+  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+  max-width: 1200px;
+  margin: 0 auto;
 }
 
-@media (min-width: 1025px) {
-  .services-grid > .service-card:last-child {
-    grid-column: 2 / 3;
-  }
-}
-
-@media (max-width: 1024px) {
-  .services-grid {
-    grid-template-columns: repeat(2, 1fr);
-  }
-  .services-grid > .service-card:last-child {
-    grid-column: auto; 
-  }
-}
-
-@media (max-width: 768px) {
-  .services-grid {
-    grid-template-columns: 1fr; 
-  }
-}
-
+/* 🌟 Service Card */
 .service-card {
-  background: #ffffff;
+  /* background: rgba(30, 41, 59, 0.9); */
+  background-color: #f7fbff;
+  border: 1px solid rgba(148, 163, 184, 0.2);
+  border-radius: 20px;
   padding: 30px 25px;
-  border-radius: 15px;
-  text-align: center;
-  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.08);
-  transition: transform 0.4s, box-shadow 0.4s;
-  display: flex;
-  flex-direction: column;
-  height: 100%;
+  text-align: left;
+  transition: all 0.35s ease;
+  position: relative;
+  overflow: hidden;
+  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.25);
+  transform: translateY(40px);
+  opacity: 0;
 }
 
+.service-card.visible {
+  transform: translateY(0);
+  opacity: 1;
+  transition: all 0.7s ease;
+}
+
+/* Hover Effects */
 .service-card:hover {
-  transform: translateY(-10px);
-  box-shadow: 0 20px 40px rgba(0, 0, 0, 0.15);
+  /* transform: translateY(-10px) scale(1.02); */
+  box-shadow: 0 12px 28px rgba(67, 67, 67, 0.708);
 }
 
+/* 🌟 Service Icon */
 .service-icon {
-  color: #0d3b66;
   font-size: 2.5rem;
-  margin-bottom: 10px; 
+  color: #0d3b66;
+  margin-bottom: 20px;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  background: rgba(56, 189, 248, 0.1);
+  border-radius: 50%;
+  width: 70px;
+  height: 70px;
+  transition: all 0.3s ease;
 }
 
+.service-card:hover .service-icon {
+  background: rgba(56, 189, 248, 0.2);
+  color: #005aad;
+  transform: rotate(10deg) scale(1.1);
+}
+
+/* 🌟 Title */
 .service-card h4 {
-  margin-bottom: 10px; 
-  color: #0d3b66;
   font-size: 1.4rem;
   font-weight: 600;
+  margin-bottom: 15px;
+  color: #00498d !important;
 }
 
+/* 🌟 List */
 .service-card ul {
   list-style: none;
   padding: 0;
-  margin: 0; 
+  margin: 0;
 }
 
 .service-card ul li {
-  margin: 8px 0;
   font-size: 0.95rem;
-  color: #555;
-  transition: color 0.3s;
+  padding: 8px 0;
+  color: #333;
+  display: flex;
+  align-items: center;
+  transition: color 0.3s ease;
 }
 
-.service-card ul li:hover {
-  color: #0d3b66;
+.service-card ul li::before {
+  content: "▹";
+  color: #38bdf8;
+  margin-right: 8px;
+  font-size: 1.1rem;
+}
+/* Services.css */
+.service-card {
+  opacity: 0;
+  transform: translateY(50px);
+  transition: all 0.6s ease;
+}
+
+.service-card.visible {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+/* Card comes from left */
+.service-card.from-left {
+  transform: translateX(-50px);
+}
+
+.service-card.from-left.visible {
+  transform: translateX(0);
+  opacity: 1;
+}
+
+/* Card comes from right */
+.service-card.from-right {
+  transform: translateX(50px);
+}
+
+.service-card.from-right.visible {
+  transform: translateX(0);
+  opacity: 1;
+}
+
+/* Card comes from bottom */
+.service-card.from-bottom {
+  transform: translateY(50px);
+}
+
+.service-card.from-bottom.visible {
+  transform: translateY(0);
+  opacity: 1;
+}
+
+/* 🌟 Chat Button */
+.chat-button {
+  margin: 60px auto 0;
+  display: inline-block;
+  padding: 14px 28px;
+  border: none;
+  border-radius: 50px;
+  font-size: 1rem;
+  font-weight: 600;
+  cursor: pointer;
+  color: #0f172a;
+  background: linear-gradient(135deg, #38bdf8, #6366f1);
+  transition: all 0.3s ease;
+  box-shadow: 0 6px 16px rgba(99, 102, 241, 0.4);
+}
+
+.chat-button:hover {
+  transform: translateY(-3px);
+  background: linear-gradient(135deg, #6366f1, #38bdf8);
+  box-shadow: 0 10px 24px rgba(56, 189, 248, 0.4);
+}
+
+/* 🌟 Responsive Adjustments */
+@media (max-width: 768px) {
+  .services-heading {
+    font-size: 2.2rem;
+  }
+
+  .service-card {
+    padding: 25px 20px;
+  }
+
+  .service-icon {
+    width: 60px;
+    height: 60px;
+    font-size: 2rem;
+  }
 }
 
 
-/* Chatbot styles*/
+/* Chatbot styles (unchanged) */
 .chat-button {
   position: fixed;
   bottom: 20px;
@@ -135,7 +242,7 @@
 }
 
 .chatbot-header {
-  background-color: #0066cc;
+  background-color: #011d45;
   color: white;
   padding: 15px;
   display: flex;
@@ -207,7 +314,7 @@
 
 .chatbot-input button {
   padding: 10px 15px;
-  background-color: #0066cc;
+  background-color: #011d45;
   color: white;
   border: none;
   border-radius: 4px;
