@@ -1,5 +1,5 @@
 import { BrowserRouter as Router, Routes, Route, Navigate } from "react-router-dom";
-import HomePg from "./pages/HomePg";
+import HomePg from "./pages/HomePg.jsx";
 import BlogDetail from "./Components/BlogDetail/BlogDetail";
 
 function App() {
