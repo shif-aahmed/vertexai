@@ -1,5 +1,6 @@
 import React, { useEffect } from "react";
 import "./AboutSection.css";
+import aboutImg from "../../assets/images/about-img.jpg"; // imported image
 
 const AboutSection = () => {
   useEffect(() => {
@@ -23,39 +24,39 @@ const AboutSection = () => {
       observer.observe(el);
     });
 
-// Letter by letter heading animation
-const heading = document.querySelector(".about-text h2");
-if (heading) {
-  const text = heading.textContent;
-  heading.textContent = "";
-  text.split("").forEach((char, i) => {
-    const span = document.createElement("span");
-    // If character is space, use non-breaking space
-    span.textContent = char === " " ? "\u00A0" : char;
-    span.style.opacity = 0;
-    span.style.display = "inline-block";
-    span.style.transition = `opacity 0.5s ease ${i * 0.1}s, transform 0.5s ease ${i * 0.1}s`;
-    span.style.transform = "translateY(20px)";
-    heading.appendChild(span);
-  });
-
-  const spans = heading.querySelectorAll("span");
-  const headingObserver = new IntersectionObserver(
-    (entries) => {
-      entries.forEach((entry) => {
-        if (entry.isIntersecting) {
-          spans.forEach((span) => {
-            span.style.opacity = 1;
-            span.style.transform = "translateY(0)";
-          });
-        }
+    // Letter by letter heading animation
+    const heading = document.querySelector(".about-text h2");
+    if (heading) {
+      const text = heading.textContent;
+      heading.textContent = "";
+      text.split("").forEach((char, i) => {
+        const span = document.createElement("span");
+        // If character is space, use non-breaking space
+        span.textContent = char === " " ? "\u00A0" : char;
+        span.style.opacity = 0;
+        span.style.display = "inline-block";
+        span.style.transition = `opacity 0.5s ease ${i * 0.1}s, transform 0.5s ease ${i * 0.1}s`;
+        span.style.transform = "translateY(20px)";
+        heading.appendChild(span);
       });
-    },
-    { threshold: 0.3 }
-  );
 
-  headingObserver.observe(heading);
-}
+      const spans = heading.querySelectorAll("span");
+      const headingObserver = new IntersectionObserver(
+        (entries) => {
+          entries.forEach((entry) => {
+            if (entry.isIntersecting) {
+              spans.forEach((span) => {
+                span.style.opacity = 1;
+                span.style.transform = "translateY(0)";
+              });
+            }
+          });
+        },
+        { threshold: 0.3 }
+      );
+
+      headingObserver.observe(heading);
+    }
 
   }, []);
 
@@ -76,7 +77,7 @@ if (heading) {
 
         <div className="about-image">
           <img
-            src="src/assets/images/about-img.jpg"
+            src={aboutImg} // use imported image
             alt="Vertex AI Tech"
           />
         </div>
