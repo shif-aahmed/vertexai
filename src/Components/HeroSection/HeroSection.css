@@ -213,7 +213,7 @@ clip-path: polygon(0 0, 100% 0, 100% 100%, 0 80%);
 @media (max-width: 769px) {
   .hero-section { padding: 60px 16px 80px; }
   .hero-title { font-size: 2.1rem; }
-  .hero-subtext { font-size: 1.1rem; }
+  .hero-subtext { font-size: 1.1rem; padding: 0 60px;}
   .clients-label { font-size: 0.75rem; }
   .client-logos span { font-size: 0.8rem; margin-right: 10px; }
 }
