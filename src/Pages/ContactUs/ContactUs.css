@@ -1,0 +1,46 @@
+.contact-us-section {
+  background: #f9f9f9;
+}
+
+.contact-us-section h2 {
+  font-size: 1.8rem;
+}
+
+.contact-us-section .form-control {
+  border-radius: 6px;
+  padding: 12px;
+  background: #fafafa;
+  border: 1px solid #ddd;
+}
+
+.contact-us-section .btn {
+  border-radius: 30px;
+  font-weight: 600;
+  color: #003989 !important;
+  border: 1px solid #003989 !important;
+}
+.contact-us-section .btn:hover{
+  background-color: #003989 !important;
+  color: white !important;
+}
+.contact-us-section i{
+  color: #003989 !important; 
+}
+.contact-us-section .msg-us{
+  color: #003989 !important; 
+}
+.reach{
+  padding-left: 3rem !important;
+}
+.contact-us-section p {
+  display: flex;
+  align-items: center;
+  justify-self: start;
+}
+
+@media screen and (max-width: 992px) {
+  .reach{
+    padding-left: 0 !important;
+  }
+  
+}

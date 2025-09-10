@@ -1,106 +1,123 @@
-// HeroSection.jsx
 import React, { useEffect } from "react";
+import { FaSearch, FaPaintBrush, FaTools, FaShippingFast } from "react-icons/fa";
 import "./HeroSection.css";
 
-const HeroSection = () => {
+const HeroSection = ({
+  heading1,
+  heading2,
+  heading3,
+  buttonText,
+  buttonLink,
+  heading1Class,
+  heading2Class,
+  heading3Class,
+  showFeatureCards = true,
+}) => {
   useEffect(() => {
-    // Hero animations
-    const heroElements = document.querySelectorAll(".hero-title, .hero-subtext, .clients-awards-container");
-    heroElements.forEach((el) => {
-      el.style.opacity = 0;
-      el.style.transform = "translateY(30px)";
-    });
-
-    const observer = new IntersectionObserver(
-      (entries) => {
-        entries.forEach((entry) => {
-          if (entry.isIntersecting) {
-            entry.target.classList.add("animate-visible");
-          }
-        });
-      },
-      { threshold: 0.3 }
+    const heroElements = document.querySelectorAll(
+      ".hero-heading1, .hero-heading2, .hero-heading3, .hero-button"
     );
 
-    heroElements.forEach((el) => observer.observe(el));
+    // Animate hero headings/button on page load
+    heroElements.forEach((el, index) => {
+      el.classList.add("pre-animate"); // start hidden
+      setTimeout(() => {
+        el.classList.add("animate-visible"); // stagger fade in
+      }, index * 200);
+    });
 
-    // Star background
-    const layerCount = 5;
-    const starCount = 400;
-    const maxTime = 90;
-    const universe = document.getElementById("universe");
-    const w = window;
-    const d = document;
-    const e = d.documentElement;
-    const g = d.getElementsByTagName("body")[0];
-    const width = w.innerWidth || e.clientWidth || g.clientWidth;
-    const height = w.innerHeight || e.clientHeight || g.clientHeight;
+    // Scroll-triggered animation for feature cards
+    if (showFeatureCards) {
+      const cards = document.querySelectorAll(".feature-card");
+      cards.forEach(card => card.classList.add("pre-animate")); // start hidden
 
-    for (let i = 0; i < starCount; ++i) {
-      const ypos = Math.round(Math.random() * height);
-      const star = document.createElement("div");
-      const speed = 1000 * (Math.random() * maxTime + 1) * 3; 
-      star.setAttribute("class", "star" + (3 - Math.floor(speed / 1000 / 8)));
-      star.style.backgroundColor = "white";
-
-      universe.appendChild(star);
-      star.animate(
-        [
-          {
-            transform: `translate3d(${width}px, ${ypos}px, 0)`
-          },
-          {
-            transform: `translate3d(-${Math.random() * 256}px, ${ypos}px, 0)`
-          }
-        ],
-        {
-          delay: Math.random() * -speed,
-          duration: speed,
-          iterations: 1000
-        }
+      const observer = new IntersectionObserver(
+        (entries) => {
+          entries.forEach(entry => {
+            if (entry.isIntersecting) {
+              entry.target.classList.add("animate-visible");
+              observer.unobserve(entry.target); // animate only once
+            }
+          });
+        },
+        { threshold: 0.3 }
       );
+
+      cards.forEach(card => observer.observe(card));
     }
-  }, []);
+
+    // Small floating particles
+    const container = document.querySelector(".hero-particles");
+    if (container && container.children.length === 0) {
+      for (let i = 0; i < 25; i++) {
+        const span = document.createElement("span");
+        span.style.left = Math.random() * 100 + "vw";
+        span.style.animationDelay = Math.random() * 12 + "s";
+        span.style.animationDuration = 8 + Math.random() * 8 + "s";
+        container.appendChild(span);
+      }
+    }
+
+  }, [showFeatureCards]);
 
   return (
     <div className="hero-wrapper">
       <section className="hero-section">
-        <div id="universe"></div> {/* Stars background */}
-        <div className="bg-pattern-layer"></div>
+        <div className="hero-text-left">
+          {heading1 && <p className={heading1Class || "hero-heading1"}>{heading1}</p>}
+          {heading2 && <p className={heading2Class || "hero-heading2"}>{heading2}</p>}
+          {heading3 && <p className={heading3Class || "hero-heading3"}>{heading3}</p>}
 
-        <div className="hero-content">
-          <h1 className="hero-title">
-            Accelerating Growth with <br />
-            <span className="highlight">Vertex AI Tech</span>
-          </h1>
-          <p className="hero-subtext">
-Unlock the power of AI with scalable ML models, intelligent agents, and enterprise-grade security — helping your business innovate, scale, and thrive.
-          </p>
-
-          {/* <div className="clients-awards-container">
-            <div className="clients-section">
-              <p className="clients-label">TRUSTED BY</p>
-              <div className="client-logos">
-                <span>Google Cloud</span>
-                <span>Wayfair</span>
-                <span>Spotify</span>
-                <span>Twitter</span>
-                <span>UPS</span>
-              </div>
-            </div>
-
-            <div className="awards-section1">
-              <p className="awards-label">RECOGNITION</p>
-              <div className="awards-logos">
-                <span>Google AI</span>
-                <span>Forrester</span>
-                <span>Gartner</span>
-                <span>TechCrunch</span>
-              </div>
-            </div>
-          </div> */}
+          {buttonText && buttonLink && (
+            <button className="hero-button">
+              <a href={buttonLink}>{buttonText}</a>
+            </button>
+          )}
         </div>
+
+        {/* Particles container */}
+        <div className="hero-particles"></div>
       </section>
+
+      <div className="e-con-inner">
+        <div
+          className="elementor-shape elementor-shape-bottom"
+          aria-hidden="true"
+          data-negative="true"
+        >
+          <svg
+            xmlns="http://www.w3.org/2000/svg"
+            viewBox="0 0 1000 100"
+            preserveAspectRatio="none"
+          >
+            <path
+              className="elementor-shape-fill"
+              d="M500,97C126.7,96.3,0.8,19.8,0,0v100l1000,0V1C1000,19.4,873.3,97.8,500,97z"
+            ></path>
+          </svg>
+        </div>
+      </div>
+
+      {showFeatureCards && (
+        <div className="hero-feature-cards">
+          <div className="feature-card">
+            <FaSearch size={40} />
+            <h3>Discover</h3>
+          </div>
+          <div className="feature-card">
+            <FaPaintBrush size={40} />
+            <h3>Design</h3>
+          </div>
+          <div className="feature-card">
+            <FaTools size={40} />
+            <h3>Build</h3>
+          </div>
+          <div className="feature-card">
+            <FaShippingFast size={40} />
+            <h3>Fast Delivery</h3>
+          </div>
+        </div>
+      )}
     </div>
   );
 };

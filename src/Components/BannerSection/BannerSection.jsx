@@ -23,16 +23,16 @@ const BannerSection = () => {
   return (
     <div className="banner-container">
       <section className="banner-section animate-background">
-        <p className="intro-statement animate-on-scroll">
-          We helped enterprises unlock a{" "}
-          <span className="highlight-green">25% boost</span> in model performance using Vertex AI. Faster deployments. Smarter outcomes.
-        </p>
+
 
         <div className="banner-content">
           <h1 className="animate-on-scroll">
             Leading your<br /> AI journey to success
           </h1>
-
+        <p className="intro-statement animate-on-scroll">
+          We helped enterprises unlock a{" "}
+          <span className="highlight-green">25% boost</span> in model performance using Vertex AI. Faster deployments. Smarter outcomes.
+        </p>
           <div className="stats-separator animate-on-scroll"></div>
 
           <div className="banner-stats">

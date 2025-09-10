@@ -1,4 +1,4 @@
-import React, { useEffect, useRef, useState } from "react";
+import React, { useEffect, useRef } from "react";
 import {
   FaLightbulb,
   FaCogs,
@@ -8,6 +8,7 @@ import {
   FaHandsHelping,
 } from "react-icons/fa";
 import "./Services.css";
+import img from "../../assets/images/image-element2.jpg"
 
 const servicesData = [
   {
@@ -21,6 +22,7 @@ const servicesData = [
       "Prompt Engineering",
       "AI-Driven Transformation",
     ],
+    bgImage: img,
   },
   {
     title: "Engineering",
@@ -35,6 +37,7 @@ const servicesData = [
       "Vertex AI Deployment",
       "Web Development",
     ],
+    bgImage: img,
   },
   {
     title: "Artificial Intelligence",
@@ -50,6 +53,7 @@ const servicesData = [
       "Web Designing",
       "UI/UX Design",
     ],
+    bgImage: img,
   },
   {
     title: "Optimization",
@@ -60,6 +64,7 @@ const servicesData = [
       "Monitoring & Drift Detection",
       "Marketing & Growth Analysis",
     ],
+    bgImage: img,
   },
   {
     title: "Deployment & Integration",
@@ -71,6 +76,7 @@ const servicesData = [
       "Vertex AI CI/CD Pipelines",
       "Third-Party Service Integration",
     ],
+    bgImage: img,
   },
   {
     title: "Support & Maintenance",
@@ -82,20 +88,14 @@ const servicesData = [
       "Long-Term Maintenance",
       "Dedicated Support Team",
     ],
+    bgImage: img,
   },
 ];
 
 const Services = () => {
   const cardsRef = useRef([]);
-  const [isChatOpen, setIsChatOpen] = useState(false);
-  const [messages, setMessages] = useState([
-    { text: "Hello! How can we help you today?", sender: "bot" },
-  ]);
-  const [inputMessage, setInputMessage] = useState("");
-  const [isLoading, setIsLoading] = useState(false);
 
   useEffect(() => {
-    // Intersection Observer for cards
     const observer = new IntersectionObserver(
       (entries) => {
         entries.forEach((entry) => {
@@ -111,7 +111,6 @@ const Services = () => {
       if (card) observer.observe(card);
     });
 
-    // Letter-by-letter animation for Services Heading
     const heading = document.querySelector(".services-heading");
     if (heading) {
       const text = heading.textContent;
@@ -144,37 +143,6 @@ const Services = () => {
     }
   }, []);
 
-  const toggleChat = () => setIsChatOpen(!isChatOpen);
-
-  const handleSendMessage = async () => {
-    if (!inputMessage.trim()) return;
-
-    setMessages((prev) => [...prev, { text: inputMessage, sender: "user" }]);
-    setInputMessage("");
-    setIsLoading(true);
-
-    try {
-      const response = await fetch("https://your-api-endpoint.com/chat", {
-        method: "POST",
-        headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({ message: inputMessage }),
-      });
-
-      const data = await response.json();
-      const botReply = data.reply || "Sorry, I couldn't process that right now.";
-      setMessages((prev) => [...prev, { text: botReply, sender: "bot" }]);
-    } catch (error) {
-      setMessages((prev) => [
-        ...prev,
-        { text: "There was an error connecting to the server.", sender: "bot" },
-      ]);
-    } finally {
-      setIsLoading(false);
-    }
-  };
-
-  const handleKeyPress = (e) => e.key === "Enter" && handleSendMessage();
-
   return (
     <section className="services" id="services">
       <h2 className="services-heading">Our Services</h2>
@@ -200,50 +168,21 @@ const Services = () => {
               key={index}
               ref={(el) => (cardsRef.current[index] = el)}
               className={`service-card ${animationClass}`}
+              style={{ backgroundImage: `url(${service.bgImage})` }} // ✅ fixed
             >
-              <div className="service-icon">{service.icon}</div>
-              <h4>{service.title}</h4>
-              <ul>
-                {service.items.map((item, idx) => (
-                  <li key={idx}>{item}</li>
-                ))}
-              </ul>
+              <div className="overlay"></div>
+              <div className="card-content">
+                <div className="service-icon">{service.icon}</div>
+                <h4 className="service-title">{service.title}</h4>
+                <ul>
+                  {service.items.map((item, idx) => (
+                    <li key={idx}>{item}</li>
+                  ))}
+                </ul>
+              </div>
             </div>
           );
         })}
-      </div>
-
-      <button className="chat-button" onClick={toggleChat}>
-        Chat with Us
-      </button>
-
-      <div className={`chatbot-container ${isChatOpen ? "open" : ""}`}>
-        <div className="chatbot-header">
-          <h3>Vertex AI</h3>
-          <button className="close-chat" onClick={toggleChat}>
-            ×
-          </button>
-        </div>
-        <div className="chatbot-messages">
-          {messages.map((message, index) => (
-            <div key={index} className={`message ${message.sender}`}>
-              {message.text}
-            </div>
-          ))}
-          {isLoading && <div className="message bot">Typing...</div>}
-        </div>
-        <div className="chatbot-input">
-          <input
-            type="text"
-            placeholder="Type your message..."
-            value={inputMessage}
-            onChange={(e) => setInputMessage(e.target.value)}
-            onKeyPress={handleKeyPress}
-          />
-          <button onClick={handleSendMessage} disabled={isLoading}>
-            {isLoading ? "..." : "Send"}
-          </button>
-        </div>
       </div>
     </section>
   );

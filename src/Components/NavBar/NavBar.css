@@ -7,18 +7,9 @@ background: linear-gradient(to bottom right, #011d45 40%, #000b1a 60%);
   top: 0;
   z-index: 1000;
   overflow: hidden;
-  /* For scroll visibility */
-  opacity: 0;
-  pointer-events: none;
-  transition: opacity 0.4s ease;
 }
 
-.navbar.visible {
-  opacity: 1;
-  pointer-events: auto;
-}
-
-.navbar.fixed {
+.navbar {
   position: fixed;
   top: 0;
   left: 0;
@@ -67,7 +58,7 @@ background: linear-gradient(to bottom right, #011d45 40%, #000b1a 60%);
 
 .navbar-menu a:hover,
 .navbar-menu a.active {
-  color: #0060e6;
+  color: #ffffff;
 }
 
 .navbar-menu a::after {
@@ -77,7 +68,7 @@ background: linear-gradient(to bottom right, #011d45 40%, #000b1a 60%);
   height: 2px;
   bottom: -3px;
   left: 0;
-  background-color: #0060e6;
+  background-color: #ffffff;
   transition: width 0.3s;
 }
 
@@ -85,7 +76,10 @@ background: linear-gradient(to bottom right, #011d45 40%, #000b1a 60%);
 .navbar-menu a.active::after {
   width: 100%;
 }
-
+.navbar-menu a,
+.mobile-menu a {
+  cursor: pointer;
+}
 /* Mobile Menu Links */
 .mobile-menu a {
   display: block;             
@@ -102,7 +96,7 @@ background: linear-gradient(to bottom right, #011d45 40%, #000b1a 60%);
 
 .mobile-menu a:hover,
 .mobile-menu a.active {
-  color: #006dd2;
+  color: #ffffff;
 }
 
 .mobile-menu a::after {
@@ -112,7 +106,7 @@ background: linear-gradient(to bottom right, #011d45 40%, #000b1a 60%);
   height: 2px;
   bottom: 0;
   left: 0;
-  background-color: #006dd2;
+  background-color: #ffffff;
   transition: width 0.3s;
 }
 

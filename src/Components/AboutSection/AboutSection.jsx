@@ -66,12 +66,9 @@ const AboutSection = () => {
       {/* About Content */}
       <div className="about-content" id="about-us">
         <div className="about-text">
-          <h2>About Vertex AI Tech</h2>
+          <h2>About Vertex AI Tec</h2>
           <p>
-            At <strong>Vertex AI Tech</strong>, we deliver cutting-edge artificial intelligence solutions that help businesses work smarter and scale faster. From <strong>custom model development</strong> to <strong>machine learning deployment</strong>, scalable pipelines, AI agents, and enterprise-grade <strong>security</strong>, our team ensures seamless integration with your business goals.
-          </p>
-          <p>
-            Leveraging the power of Google Cloud’s Vertex AI platform, we empower enterprises to accelerate innovation, boost productivity, and gain a competitive edge in today’s rapidly evolving market.
+ At Vertex AI Tec, we are a team of dedicated and skilled professionals committed to transforming your ideas into innovative digital solutions. We strive to empower businesses by leveraging cutting-edge AI technologies and modern frameworks to build efficient, user-friendly applications. Our experts work with passion, creativity, and precision, ensuring every project achieves maximum impact and client satisfaction. Partner with us today and discover how Vertex AI Tec can accelerate your digital success.
           </p>
         </div>
 

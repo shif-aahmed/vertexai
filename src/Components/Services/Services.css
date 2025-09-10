@@ -1,7 +1,5 @@
-/* 🌟 General Services Section */
 .services {
   padding: 80px 20px;
-  /* background: linear-gradient(135deg, #0f172a, #1e293b); */
   background-color: white;
   color: #f8fafc;
   text-align: center;
@@ -28,7 +26,6 @@
   border-radius: 2px;
 }
 
-/* 🌟 Grid Layout */
 .services-grid {
   display: grid;
   gap: 30px;
@@ -37,38 +34,81 @@
   margin: 0 auto;
 }
 
-/* 🌟 Service Card */
+/* Service Card */
 .service-card {
-  /* background: rgba(30, 41, 59, 0.9); */
-  background-color: #f7fbff;
-  border: 1px solid rgba(148, 163, 184, 0.2);
+  position: relative;
   border-radius: 20px;
   padding: 30px 25px;
-  text-align: left;
-  transition: all 0.35s ease;
-  position: relative;
   overflow: hidden;
-  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.25);
-  transform: translateY(40px);
+  color: #fff;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+  min-height: 400px; /* equal height */
+  background: none; /* remove direct background */
+  transition: all 0.4s ease;
+  transform: translateY(50px);
   opacity: 0;
+}
+
+/* Background image layer */
+.service-card::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background-image: inherit; /* use inline style from JSX */
+  background-size: cover;
+  background-position: center;
+  z-index: 0;
+  transition: transform 0.5s ease;
+}
+
+/* Overlay */
+.service-card .overlay {
+  position: absolute;
+  inset: 0;
+  background: rgba(0, 0, 0, 0.831);
+  transition: all 0.4s ease;
+  z-index: 1;
+}
+
+/* Card content */
+.service-card .card-content {
+  position: relative;
+  z-index: 2;
+  display: flex;
+  flex-direction: column;
+  height: 100%;
 }
 
 .service-card.visible {
   transform: translateY(0);
   opacity: 1;
-  transition: all 0.7s ease;
 }
+
+/* Card comes from left/right/bottom */
+.service-card.from-left { transform: translateX(-50px); }
+.service-card.from-left.visible { transform: translateX(0); opacity: 1; }
+.service-card.from-right { transform: translateX(50px); }
+.service-card.from-right.visible { transform: translateX(0); opacity: 1; }
+.service-card.from-bottom { transform: translateY(50px); }
+.service-card.from-bottom.visible { transform: translateY(0); opacity: 1; }
 
 /* Hover Effects */
 .service-card:hover {
-  /* transform: translateY(-10px) scale(1.02); */
-  box-shadow: 0 12px 28px rgba(67, 67, 67, 0.708);
+  transform: scale(1.03);
 }
 
-/* 🌟 Service Icon */
+.service-card:hover::before {
+  transform: scale(1.1); /* scale background on hover */
+}
+
+.service-card:hover .overlay {
+  background: rgba(0, 0, 0, 0.68); /* lighten overlay */
+}
+
 .service-icon {
   font-size: 2.5rem;
-  color: #0d3b66;
   margin-bottom: 20px;
   display: inline-flex;
   align-items: center;
@@ -81,33 +121,34 @@
 }
 
 .service-card:hover .service-icon {
-  background: rgba(56, 189, 248, 0.2);
-  color: #005aad;
+  background: rgba(178, 178, 178, 0.525);
+  color: #000000;
   transform: rotate(10deg) scale(1.1);
 }
 
-/* 🌟 Title */
 .service-card h4 {
   font-size: 1.4rem;
   font-weight: 600;
   margin-bottom: 15px;
-  color: #00498d !important;
+  color: #fff !important;
+}
+.service-card:hover h4 {
+  color: #38bdf8 !important;
 }
 
-/* 🌟 List */
 .service-card ul {
   list-style: none;
   padding: 0;
   margin: 0;
+  flex-grow: 1;
 }
 
 .service-card ul li {
   font-size: 0.95rem;
   padding: 8px 0;
-  color: #333;
+  color: #fff;
   display: flex;
   align-items: center;
-  transition: color 0.3s ease;
 }
 
 .service-card ul li::before {
@@ -116,211 +157,10 @@
   margin-right: 8px;
   font-size: 1.1rem;
 }
-/* Services.css */
-.service-card {
-  opacity: 0;
-  transform: translateY(50px);
-  transition: all 0.6s ease;
-}
 
-.service-card.visible {
-  opacity: 1;
-  transform: translateY(0);
-}
-
-/* Card comes from left */
-.service-card.from-left {
-  transform: translateX(-50px);
-}
-
-.service-card.from-left.visible {
-  transform: translateX(0);
-  opacity: 1;
-}
-
-/* Card comes from right */
-.service-card.from-right {
-  transform: translateX(50px);
-}
-
-.service-card.from-right.visible {
-  transform: translateX(0);
-  opacity: 1;
-}
-
-/* Card comes from bottom */
-.service-card.from-bottom {
-  transform: translateY(50px);
-}
-
-.service-card.from-bottom.visible {
-  transform: translateY(0);
-  opacity: 1;
-}
-
-/* 🌟 Chat Button */
-.chat-button {
-  margin: 60px auto 0;
-  display: inline-block;
-  padding: 14px 28px;
-  border: none;
-  border-radius: 50px;
-  font-size: 1rem;
-  font-weight: 600;
-  cursor: pointer;
-  color: #0f172a;
-  background: linear-gradient(135deg, #38bdf8, #6366f1);
-  transition: all 0.3s ease;
-  box-shadow: 0 6px 16px rgba(99, 102, 241, 0.4);
-}
-
-.chat-button:hover {
-  transform: translateY(-3px);
-  background: linear-gradient(135deg, #6366f1, #38bdf8);
-  box-shadow: 0 10px 24px rgba(56, 189, 248, 0.4);
-}
-
-/* 🌟 Responsive Adjustments */
+/* Responsive */
 @media (max-width: 768px) {
-  .services-heading {
-    font-size: 2.2rem;
-  }
-
-  .service-card {
-    padding: 25px 20px;
-  }
-
-  .service-icon {
-    width: 60px;
-    height: 60px;
-    font-size: 2rem;
-  }
-}
-
-
-/* Chatbot styles (unchanged) */
-.chat-button {
-  position: fixed;
-  bottom: 20px;
-  right: 20px;
-  padding: 12px 24px;
-  background-color: #0066cc;
-  color: white;
-  border: none;
-  border-radius: 4px;
-  cursor: pointer;
-  font-size: 1rem;
-  z-index: 1001;
-  transition: background-color 0.3s;
-}
-
-.chat-button:hover {
-  background-color: #0052a3;
-}
-
-.chatbot-container {
-  position: fixed;
-  bottom: 70px;
-  right: 20px;
-  width: 350px;
-  height: 450px;
-  background-color: white;
-  border-radius: 10px;
-  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.15);
-  display: flex;
-  flex-direction: column;
-  overflow: hidden;
-  transform: translateY(100%);
-  opacity: 0;
-  transition: transform 0.3s, opacity 0.3s;
-  z-index: 1000;
-}
-
-.chatbot-container.open {
-  transform: translateY(0);
-  opacity: 1;
-}
-
-.chatbot-header {
-  background-color: #011d45;
-  color: white;
-  padding: 15px;
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-}
-
-.chatbot-header h3 {
-  margin: 0;
-  font-size: 1.2rem;
-}
-
-.close-chat {
-  background: none;
-  border: none;
-  color: white;
-  font-size: 1.5rem;
-  cursor: pointer;
-  padding: 0;
-  width: 30px;
-  height: 30px;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-}
-
-.chatbot-messages {
-  flex: 1;
-  padding: 15px;
-  overflow-y: auto;
-  display: flex;
-  flex-direction: column;
-  gap: 10px;
-}
-
-.message {
-  padding: 10px 15px;
-  border-radius: 18px;
-  max-width: 80%;
-  word-wrap: break-word;
-}
-
-.message.user {
-  align-self: flex-end;
-  background-color: #0066cc;
-  color: white;
-}
-
-.message.bot {
-  align-self: flex-start;
-  background-color: #f1f1f1;
-  color: #333;
-}
-
-.chatbot-input {
-  padding: 15px;
-  display: flex;
-  gap: 10px;
-  border-top: 1px solid #eee;
-}
-
-.chatbot-input input {
-  flex: 1;
-  padding: 10px;
-  border: 1px solid #ddd;
-  border-radius: 4px;
-  outline: none;
-}
-
-.chatbot-input button {
-  padding: 10px 15px;
-  background-color: #011d45;
-  color: white;
-  border: none;
-  border-radius: 4px;
-  cursor: pointer;
-}
-
-.chatbot-input button:hover {
-  background-color: #0052a3;
+  .services-heading { font-size: 2.2rem; }
+  .service-card { padding: 25px 20px; min-height: 350px; }
+  .service-icon { width: 60px; height: 60px; font-size: 2rem; }
 }
