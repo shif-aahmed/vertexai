@@ -217,6 +217,9 @@
     justify-content: center;
     gap: 20px;
   }
+    .contact-heading3{
+  padding-right: 15rem !important;
+}
 }
 
 @media (max-width: 769px) {
@@ -234,6 +237,21 @@
   .hero-feature-cards,.elementor-shape {
     display: none;
   }
+}
+@media (max-width: 1000px) {
+      .contact-heading3{
+  padding-right: 8rem !important;
+}
+}
+@media (max-width: 550px) {
+      .contact-heading3{
+  padding-right: 5rem !important;
+}
+}
+@media (max-width: 410px) {
+      .contact-heading3{
+  padding-right: 0rem !important;
+}
 }
 .home-heading1,.contact-heading1{
   font-size: 2rem;
