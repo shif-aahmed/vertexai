@@ -44,3 +44,16 @@
   }
   
 }
+/* Scroll-triggered fade-in */
+.contact-us-section h2,
+.contact-us-section form,
+.contact-us-section .reach {
+  opacity: 0;
+  transform: translateY(30px);
+  transition: all 0.8s ease-out;
+}
+
+.contact-us-section .fade-in {
+  opacity: 1;
+  transform: translateY(0);
+}

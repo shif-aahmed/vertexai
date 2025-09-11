@@ -35,7 +35,6 @@ const servicesData = [
       "AI-Powered Applications",
       "Cloud AI Solutions",
       "Vertex AI Deployment",
-      "Web Development",
     ],
     bgImage: img,
   },
@@ -50,8 +49,6 @@ const servicesData = [
       "Training & Fine-Tuning",
       "Managed MLOps",
       "Vertex AI Studio",
-      "Web Designing",
-      "UI/UX Design",
     ],
     bgImage: img,
   },
@@ -62,7 +59,6 @@ const servicesData = [
       "Model Evaluation & Audit",
       "AI Accuracy Testing",
       "Monitoring & Drift Detection",
-      "Marketing & Growth Analysis",
     ],
     bgImage: img,
   },
@@ -91,6 +87,7 @@ const servicesData = [
     bgImage: img,
   },
 ];
+
 
 const Services = () => {
   const cardsRef = useRef([]);
