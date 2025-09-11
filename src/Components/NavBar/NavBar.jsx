@@ -11,12 +11,14 @@ const Navbar = () => {
   useEffect(() => {
     const handleScroll = () => {
       const featureCards = document.querySelector('.hero-feature-cards');
+      const heroSection = document.querySelector('.contact-us-section'); // ✅ Hero on Contact Us page
 
-      if (featureCards) {
-        const featureTop = featureCards.getBoundingClientRect().top;
+      if (featureCards || heroSection) {
+        const triggerElement = featureCards || heroSection;
+        const triggerTop = triggerElement.getBoundingClientRect().top;
 
-        // Navbar should change once feature cards reach the top of the viewport
-        if (featureTop <= 80) {
+        // Navbar changes once element reaches top of viewport
+        if (triggerTop <= 80) {
           setScrolled(true);
         } else {
           setScrolled(false);

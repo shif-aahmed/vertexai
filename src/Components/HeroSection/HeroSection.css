@@ -120,7 +120,7 @@
 }
 
 /* Particles */
-.hero-particles {
+/* .hero-particles {
   position: absolute;
   inset: 0;
   overflow: hidden;
@@ -135,7 +135,8 @@
   background: rgba(255, 255, 255, 0.7);
   border-radius: 50%;
   animation: floatUp 12s linear infinite;
-}
+} */
+
 
 /* Shape Divider */
 .elementor-shape {

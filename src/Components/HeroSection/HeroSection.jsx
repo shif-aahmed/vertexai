@@ -1,5 +1,5 @@
 import React, { useEffect } from "react";
-import { FaSearch, FaPaintBrush, FaTools, FaShippingFast } from "react-icons/fa";
+import { FaLightbulb, FaCode, FaCogs, FaRocket } from "react-icons/fa";
 import "./HeroSection.css";
 
 const HeroSection = ({
@@ -46,17 +46,17 @@ const HeroSection = ({
       cards.forEach(card => observer.observe(card));
     }
 
-    // Small floating particles
-    const container = document.querySelector(".hero-particles");
-    if (container && container.children.length === 0) {
-      for (let i = 0; i < 25; i++) {
-        const span = document.createElement("span");
-        span.style.left = Math.random() * 100 + "vw";
-        span.style.animationDelay = Math.random() * 12 + "s";
-        span.style.animationDuration = 8 + Math.random() * 8 + "s";
-        container.appendChild(span);
-      }
-    }
+    // // Small floating particles
+    // const container = document.querySelector(".hero-particles");
+    // if (container && container.children.length === 0) {
+    //   for (let i = 0; i < 25; i++) {
+    //     const span = document.createElement("span");
+    //     span.style.left = Math.random() * 100 + "vw";
+    //     span.style.animationDelay = Math.random() * 12 + "s";
+    //     span.style.animationDuration = 8 + Math.random() * 8 + "s";
+    //     container.appendChild(span);
+    //   }
+    // }
 
   }, [showFeatureCards]);
 
@@ -99,24 +99,25 @@ const HeroSection = ({
       </div>
 
       {showFeatureCards && (
-        <div className="hero-feature-cards">
-          <div className="feature-card">
-            <FaSearch size={40} />
-            <h3>Discover</h3>
-          </div>
-          <div className="feature-card">
-            <FaPaintBrush size={40} />
-            <h3>Design</h3>
-          </div>
-          <div className="feature-card">
-            <FaTools size={40} />
-            <h3>Build</h3>
-          </div>
-          <div className="feature-card">
-            <FaShippingFast size={40} />
-            <h3>Fast Delivery</h3>
-          </div>
-        </div>
+<div className="hero-feature-cards">
+  <div className="feature-card">
+    <FaLightbulb size={40} />
+    <h3>Innovate</h3>
+  </div>
+  <div className="feature-card">
+    <FaCode size={40} />
+    <h3>Develop</h3>
+  </div>
+  <div className="feature-card">
+    <FaCogs size={40} />
+    <h3>Engineer</h3>
+  </div>
+  <div className="feature-card">
+    <FaRocket size={40} />
+    <h3>Launch</h3>
+  </div>
+</div>
+
       )}
     </div>
   );

@@ -75,19 +75,13 @@ const ContactUs = () => {
           <div className="col-lg-4 col-md-12 reach">
             <h2 className="fw-bold mb-4">Where to Find Us</h2>
             <div className="mb-4">
-              <h5 className="fw-bold">Our Office</h5>
-              <p className="mb-4">
-                <i className="bi bi-geo-alt-fill me-2 text-info"></i>
-                Office # 12, first floor, Roman Center, YY sector, DHA Phase 8,
-                Lahore
-              </p>
               <p className="mb-4">
                 <i className="bi bi-envelope-fill me-2 text-info"></i>
                 info@vertexaitec.com
               </p>
               <p className="mb-4">
                 <i className="bi bi-telephone-fill me-2 text-info"></i>
-                +92 339 0107478
+                +971 55 2900864
               </p>
               <p>
                 <i className="bi bi-phone-fill me-2 text-info"></i>
