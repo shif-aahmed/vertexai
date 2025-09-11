@@ -8,7 +8,13 @@ import {
   FaHandsHelping,
 } from "react-icons/fa";
 import "./Services.css";
-import img from "../../assets/images/image-element2.jpg"
+import img1 from "../../assets/images/advisory.avif"
+import img2 from "../../assets/images/image-element2.jpg"
+import img3 from "../../assets/images/ai.jpg"
+import img4 from "../../assets/images/optimization.avif"
+import img5 from "../../assets/images/deployment.avif"
+import img6 from "../../assets/images/maintenance.jpg"
+
 
 const servicesData = [
   {
@@ -22,7 +28,7 @@ const servicesData = [
       "Prompt Engineering",
       "AI-Driven Transformation",
     ],
-    bgImage: img,
+    bgImage: img1,
   },
   {
     title: "Engineering",
@@ -36,7 +42,7 @@ const servicesData = [
       "Cloud AI Solutions",
       "Vertex AI Deployment",
     ],
-    bgImage: img,
+    bgImage: img2,
   },
   {
     title: "Artificial Intelligence",
@@ -50,7 +56,7 @@ const servicesData = [
       "Managed MLOps",
       "Vertex AI Studio",
     ],
-    bgImage: img,
+    bgImage: img3,
   },
   {
     title: "Optimization",
@@ -60,7 +66,7 @@ const servicesData = [
       "AI Accuracy Testing",
       "Monitoring & Drift Detection",
     ],
-    bgImage: img,
+    bgImage: img4,
   },
   {
     title: "Deployment & Integration",
@@ -72,7 +78,7 @@ const servicesData = [
       "Vertex AI CI/CD Pipelines",
       "Third-Party Service Integration",
     ],
-    bgImage: img,
+    bgImage: img5,
   },
   {
     title: "Support & Maintenance",
@@ -84,7 +90,7 @@ const servicesData = [
       "Long-Term Maintenance",
       "Dedicated Support Team",
     ],
-    bgImage: img,
+    bgImage: img6,
   },
 ];
 

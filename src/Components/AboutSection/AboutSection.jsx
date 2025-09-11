@@ -66,7 +66,7 @@ const AboutSection = () => {
       {/* About Content */}
       <div className="about-content" id="about-us">
         <div className="about-text">
-          <h2>About Vertex AI Tec</h2>
+          <h2>About VertexAI Tec</h2>
           <p>
  At Vertex AI Tec, we are a team of dedicated and skilled professionals committed to transforming your ideas into innovative digital solutions. We strive to empower businesses by leveraging cutting-edge AI technologies and modern frameworks to build efficient, user-friendly applications. Our experts work with passion, creativity, and precision, ensuring every project achieves maximum impact and client satisfaction. Partner with us today and discover how Vertex AI Tec can accelerate your digital success.
           </p>

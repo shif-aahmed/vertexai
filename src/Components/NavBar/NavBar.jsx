@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { FaBars, FaTimes } from 'react-icons/fa';
 import './NavBar.css';
 import logo from '../../assets/images/vertexai-logo.png';
@@ -6,15 +6,35 @@ import logo from '../../assets/images/vertexai-logo.png';
 const Navbar = () => {
   const [isOpen, setIsOpen] = useState(false);
   const [activeLink, setActiveLink] = useState('');
+  const [scrolled, setScrolled] = useState(false);
+
+  useEffect(() => {
+    const handleScroll = () => {
+      const featureCards = document.querySelector('.hero-feature-cards');
+
+      if (featureCards) {
+        const featureTop = featureCards.getBoundingClientRect().top;
+
+        // Navbar should change once feature cards reach the top of the viewport
+        if (featureTop <= 80) {
+          setScrolled(true);
+        } else {
+          setScrolled(false);
+        }
+      }
+    };
+
+    window.addEventListener('scroll', handleScroll);
+    return () => window.removeEventListener('scroll', handleScroll);
+  }, []);
 
   const handleSectionClick = (sectionId) => {
-    // Redirect to homepage with hash
     window.location.href = `/#${sectionId}`;
     setIsOpen(false);
   };
 
   return (
-    <nav className="navbar">
+    <nav className={`navbar ${scrolled ? 'scrolled' : ''}`}>
       <div className="navbar-container">
         {/* Logo */}
         <div className="navbar-logo">

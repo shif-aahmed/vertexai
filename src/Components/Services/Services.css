@@ -132,6 +132,7 @@
   font-weight: 600;
   margin-bottom: 15px;
   color: #fff !important;
+  text-align: left !important;
 }
 .service-card:hover h4 {
   color: #38bdf8 !important;

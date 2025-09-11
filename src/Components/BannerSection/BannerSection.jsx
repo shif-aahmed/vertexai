@@ -23,28 +23,25 @@ const BannerSection = () => {
   return (
     <div className="banner-container">
       <section className="banner-section animate-background">
-
-
         <div className="banner-content">
           <h1 className="animate-on-scroll">
             Leading your<br /> AI journey to success
           </h1>
-        <p className="intro-statement animate-on-scroll">
-          We helped enterprises unlock a{" "}
-          <span className="highlight-green">25% boost</span> in model performance using Vertex AI. Faster deployments. Smarter outcomes.
-        </p>
+          <p className="intro-statement animate-on-scroll">
+            We helped enterprises unlock a{" "}
+            <span className="highlight-green">25% boost</span> in model performance using Vertex AI. Faster deployments. Smarter outcomes.
+          </p>
           <div className="stats-separator animate-on-scroll"></div>
 
           <div className="banner-stats">
             {[
-              { h3: "15+", p: "Years of AI-driven innovation" },
-              { h3: "1000+", p: "ML & cloud transformation experts" },
-              { h3: "500+", p: "AI Projects Successfully Delivered" },
-              { h3: "94%", p: "Client Satisfaction in AI Solutions" },
-              { h3: "40%", p: "Business Domains Transformed" },
+              { p: "Years of AI-driven innovation" },
+              { p: "ML & cloud transformation experts" },
+              { p: "AI Projects Successfully Delivered" },
+              { p: "Client Satisfaction in AI Solutions" },
+              { p: "Business Domains Transformed" },
             ].map((stat, i) => (
               <div key={i} className="stat-box animate-on-scroll">
-                <h3>{stat.h3}</h3>
                 <p>{stat.p}</p>
               </div>
             ))}

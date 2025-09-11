@@ -59,7 +59,7 @@
 .intro-statement {
   font-size: 1rem;
   color: #ffffffcc;
-  margin-bottom: 10px;
+  margin-bottom: 0px !important;
   max-width: 700px;
   line-height: 1.6;
   font-weight: 500;
