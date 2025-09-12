@@ -11,10 +11,11 @@ const Navbar = () => {
   useEffect(() => {
     const handleScroll = () => {
       const featureCards = document.querySelector('.hero-feature-cards');
-      const heroSection = document.querySelector('.contact-us-section'); // ✅ Hero on Contact Us page
+      const heroSection = document.querySelector('.contact-us-section');
+      const careerPage = document.querySelector('.career-page');
 
-      if (featureCards || heroSection) {
-        const triggerElement = featureCards || heroSection;
+      if (featureCards || heroSection || careerPage) {
+        const triggerElement = featureCards || heroSection || careerPage;
         const triggerTop = triggerElement.getBoundingClientRect().top;
 
         // Navbar changes once element reaches top of viewport
@@ -71,6 +72,12 @@ const Navbar = () => {
           >
             Contact Us
           </a>
+          <a
+            href="/career"
+            className={activeLink === 'career' ? 'active' : ''}
+          >
+            Career
+          </a>
         </div>
 
         {/* Mobile Menu Button */}
@@ -105,6 +112,12 @@ const Navbar = () => {
         >
           Contact Us
         </a>
+        <a
+            href="/career"
+            className={activeLink === 'career' ? 'active' : ''}
+          >
+            Career
+      </a>
       </div>
     </nav>
   );

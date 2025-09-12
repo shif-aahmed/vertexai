@@ -26,15 +26,7 @@ const ContactUs = () => {
 
   return (
     <>
-      <HeroSection
-        heading1="Reach Out Today"
-        heading2="Premium Business Solutions for Your Success"
-        heading3="At Vertex AI Tech, we harness cutting-edge technology and innovative strategies to solve your toughest challenges. Connect with us to transform your ideas into reality."
-        heading1Class="contact-heading1"
-        heading2Class="contact-heading2"
-        heading3Class="contact-heading3"
-        showFeatureCards={false} // cards will NOT render
-      />
+
       <div className="contact-us-section container py-5" id="contact">
         <div className="row bg-white rounded p-4">
           {/* Left side - Form */}

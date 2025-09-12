@@ -1,0 +1,214 @@
+/* -------------------------------------------------- */
+/* File: CareerPage.css */
+/* Place this file in the same folder as CareerPage.jsx */
+
+/* Reset basics */
+:root{
+  --bg:#f8f9fa; /* light background */
+  --card:#e6eef8; /* card background */
+  --muted:#374151; /* muted text on light bg */
+  --accent:#1e3a8a; /* deep navy blue accent */
+  --glass: rgba(0,0,0,0.04); /* subtle glass effect */
+}
+
+.career-page{
+  font-family: Inter, ui-sans-serif, system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue", Arial;
+  color:#1f2937; /* main text dark for light background */
+  background:linear-gradient(180deg,var(--bg),#ffffff 40%);
+  min-height:100vh;
+}
+
+.career-hero{padding:150px 40px 72px}
+.hero-inner{max-width:1200px;margin:0 auto;display:flex;align-items:center;gap:32px;}
+.hero-content{flex:1}
+.hero-title{font-size:2.4rem;margin:0 0 12px;line-height:1.05;color:#1e3a8a} /* deep navy heading */
+.hero-sub{color:var(--muted);margin-bottom:20px}
+.cta-btn{display:inline-block;background:linear-gradient(90deg,var(--accent),#5bc8ff);padding:10px 16px;border-radius:10px;color:#ffffff;font-weight:700;text-decoration:none}
+
+.hero-visual{width:320px}
+.visual-card{background:linear-gradient(180deg, rgba(30,58,138,0.03), rgba(30,58,138,0.02));padding:18px;border-radius:14px;backdrop-filter: blur(6px);border:1px solid rgba(30,58,138,0.03)}
+.visual-top{font-size:0.9rem;color:var(--muted);margin-bottom:10px}
+.visual-body{display:flex;gap:10px}
+.info-card{flex:1;padding:12px;border-radius:12px;background:rgba(30,58,138,0.05);border:1px solid rgba(30,58,138,0.1);text-align:center}
+.info-card .info-title{font-size:0.85rem;color:var(--muted);margin-bottom:6px}
+.info-card .info-detail{font-size:1rem;font-weight:600;color:#1e3a8a} /* accent text for details */
+
+.career-main{max-width:1200px;margin:40px auto;padding:0 20px 80px;display:block}
+.apply-section{display:grid;grid-template-columns:1fr 380px;gap:28px;align-items:start}
+.form-column{background:linear-gradient(180deg, rgba(30,58,138,0.01), rgba(30,58,138,0.005));padding:24px;border-radius:12px;border:1px solid rgba(30,58,138,0.03)}
+.list-column{padding:18px}
+.apply-form .row{display:flex;gap:12px}
+.field{display:block;margin-bottom:12px}
+.field .label{display:block;font-size:0.85rem;color:var(--muted);margin-bottom:6px}
+.field input,.field select,.field textarea{width:100%;padding:10px;border-radius:8px;border:1px solid rgba(30,58,138,0.06);background:transparent;color:inherit;box-sizing:border-box}
+.file-field .file-input-wrap{display:flex;align-items:center;gap:12px}
+.file-input-wrap input[type=file]{flex:0 0 220px}
+.file-meta{font-size:0.9rem;color:var(--muted)}
+.error{color:#dc2626;font-size:0.85rem;margin-top:6px}
+.actions{display:flex;gap:12px;margin-top:12px}
+.btn-primary{background:linear-gradient(90deg,var(--accent),#5bc8ff);border:none;padding:10px 14px;border-radius:8px;font-weight:700;cursor:pointer;color:#ffffff}
+.btn-ghost{background:transparent;border:1px solid rgba(30,58,138,0.04);padding:10px 14px;border-radius:8px;color:var(--muted);cursor:pointer}
+.tips{margin-top:18px;color:var(--muted)}
+.tips h4{margin:0 0 8px}
+
+.list-header{margin-bottom:12px}
+.applicants-list{display:flex;flex-direction:column;gap:12px}
+.empty{color:var(--muted);padding:20px;border-radius:8px;background:rgba(30,58,138,0.015);}
+
+.values{margin-top:40px;}
+.values-inner{display:flex;gap:18px;}
+.value{flex:1;padding:18px;background:rgba(30,58,138,0.015);border-radius:10px; background-color: #e6eef8;}
+.value h4{margin:0 0 8px}
+.career-footer{text-align:center;padding:26px;color:var(--muted);border-top:1px solid rgba(30,58,138,0.02)}
+
+/* Responsive */
+@media (max-width: 980px){
+  .apply-section{grid-template-columns:1fr;}
+  .hero-inner{flex-direction:column;align-items:flex-start}
+  .hero-visual{width:100%}
+}
+
+.role-select {
+  width: 100%;
+  padding: 10px;
+  border-radius: 8px;
+  border: 1px solid rgba(30,58,138,0.06);
+  background: transparent;
+  color: inherit;
+  cursor: pointer;
+}
+.role-option{
+    color: #1e3a8a;
+}
+.visual-body {
+  display: flex;
+  gap: 12px;
+  margin-top: 12px;
+}
+
+.info-card {
+  flex: 1;
+  padding: 12px 16px;
+  border-radius: 12px;
+  background: rgba(30,58,138,0.05);
+  border: 1px solid rgba(30,58,138,0.1);
+  text-align: center;
+}
+
+.info-card .info-title {
+  font-size: 0.85rem;
+  color: var(--muted);
+  margin-bottom: 6px;
+}
+
+.info-card .info-detail {
+  font-size: 1rem;
+  font-weight: 600;
+  color: #1e3a8a; /* accent color */
+}
+.fade-on-scroll {
+  opacity: 0;
+  transform: translateY(30px);
+  transition: opacity 0.8s ease, transform 0.8s ease;
+}
+
+.fade-on-scroll.visible {
+  opacity: 1;
+  transform: translateY(0);
+}
+/* Wrapper for the entire file field */
+.field.file-field {
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+  font-family: system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue", Arial;
+  max-width: 400px;
+  width: 100%;
+}
+
+/* Label text */
+.field.file-field .label {
+  font-weight: 600;
+  font-size: 0.95rem;
+}
+
+/* File input wrapper */
+.field.file-field .file-input-wrap {
+  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 0.55rem 1rem;
+  background: #ebebeb;
+  border: 1px solid #334155; /* subtle border */
+  border-radius: 12px;
+  cursor: pointer;
+  transition: all 0.2s ease;
+}
+
+.field.file-field .file-input-wrap:hover {
+  border-color: #3b82f6; /* accent color on hover */
+  box-shadow: 0 4px 15px rgba(59, 130, 246, 0.3);
+}
+
+/* Hide the native input */
+.field.file-field input[type="file"] {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  opacity: 0;
+  cursor: pointer;
+}
+
+/* Display selected file name */
+.field.file-field .file-meta {
+  font-size: 0.9rem;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  max-width: 70%;
+}
+
+/* Error message styling */
+.field.file-field .error {
+  color: #f87171; /* red */
+  font-size: 0.82rem;
+  margin-top: 0.25rem;
+}
+
+/* Optional: small subtle icon (like 📎) before file name */
+.field.file-field .file-meta::before {
+  content: "📎";
+  margin-right: 0.5rem;
+}
+
+/* Responsive tweak */
+@media (max-width: 480px) {
+  .field.file-field .file-input-wrap {
+    padding: 0.45rem 0.8rem;
+  }
+  .field.file-field .file-meta {
+    font-size: 0.85rem;
+  }
+}
+
+/* -------------------------------------------------- */
+/* File: ApplicantCard.css */
+/* Small styles specifically for the applicant cards (keeps separation) */
+
+.applicant-card{
+  display:flex;gap:12px;align-items:flex-start;padding:12px;border-radius:10px;background:rgba(30,58,138,0.02);border:1px solid rgba(30,58,138,0.05)
+}
+.applicant-card .avatar{
+  width:56px;height:56px;border-radius:10px;background:linear-gradient(180deg,#1e3a8a,#15294b);display:flex;align-items:center;justify-content:center;font-weight:700;color:#ffffff
+}
+.applicant-card .info{flex:1}
+.applicant-card .top{display:flex;justify-content:space-between;align-items:center}
+.applicant-card .name{font-weight:700;color:#1e3a8a}
+.applicant-card .role{font-size:0.85rem;color:var(--muted)}
+.applicant-card .pitch{margin-top:8px;color:var(--muted)}
+.applicant-card .meta{font-size:0.78rem;color:var(--muted);margin-top:8px}
+.card-actions{margin-left:12px}
+.card-actions .download{display:inline-block;padding:8px 10px;border-radius:8px;border:1px solid rgba(30,58,138,0.03);text-decoration:none;color:var(--muted)}
+
+/* End of files */

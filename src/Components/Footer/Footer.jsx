@@ -53,6 +53,9 @@ const Footer = () => {
   </p>
   <p>
     <a href="/contact-us">Contact</a>
+    </p>
+      <p>
+    <a href="/career">Career</a>
   </p>
 </div>
 

@@ -4,6 +4,7 @@ import ContactUs from "./pages/ContactUs/ContactUs.jsx";
 import Navbar from "./components/NavBar/NavBar";
 import Footer from "./components/Footer/Footer";
 import Chatbot from "./components/Chatbot/Chatbot";
+import CareerPage from "./pages/CareerPage/CareerPage";
 
 function App() {
   return (
@@ -12,6 +13,7 @@ function App() {
       <Routes>
         <Route path="/" element={<HomePg />} />
         <Route path="/contact-us" element={<ContactUs />} />
+        <Route path="/career" element={<CareerPage />} />
       </Routes>
       <Footer />
       <Chatbot />
