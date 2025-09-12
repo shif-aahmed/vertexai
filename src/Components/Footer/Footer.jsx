@@ -43,21 +43,24 @@ const Footer = () => {
             </div>
 
             {/* Company */}
-<div className="footer-company col-12 col-md-3">
-  <h4>Company</h4>
-  <p>
-    <a href="/">Home</a>
-  </p>
-  <p>
-    <a onClick={() => handleSectionClick('services')} href="#services">Services</a>
-  </p>
-  <p>
-    <a href="/contact-us">Contact</a>
-    </p>
-      <p>
-    <a href="/career">Career</a>
-  </p>
-</div>
+            <div className="footer-company col-12 col-md-3">
+              <h4>Company</h4>
+              <p>
+                <a href="/">Home</a>
+              </p>
+              <p>
+                <a onClick={() => handleSectionClick('services')} href="#services">Services</a>
+              </p>
+              <p>
+                <a href="/contact-us">Contact</a>
+                </p>
+                  <p>
+                <a href="/career">Career</a>
+              </p>
+              <p>
+                <a href="/blogs">Blogs</a>
+              </p>
+            </div>
 
 
             {/* Business */}

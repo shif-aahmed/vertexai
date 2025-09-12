@@ -26,6 +26,15 @@ const ContactUs = () => {
 
   return (
     <>
+<HeroSection
+  heading1="Get in Touch"
+  heading2="Let’s Build the Future of AI Together"
+  heading3="Have questions, ideas, or partnership opportunities? We’d love to hear from you. Reach out to our team and we’ll get back to you as soon as possible."
+  heading1Class="contact-heading1"
+  heading2Class="contact-heading2"
+  heading3Class="contact-heading3"
+  showFeatureCards={false}
+/>
 
       <div className="contact-us-section container py-5" id="contact">
         <div className="row bg-white rounded p-4">

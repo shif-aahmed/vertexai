@@ -13,9 +13,10 @@ const Navbar = () => {
       const featureCards = document.querySelector('.hero-feature-cards');
       const heroSection = document.querySelector('.contact-us-section');
       const careerPage = document.querySelector('.career-page');
+      const blogPage = document.querySelector('.blogs-page');
 
-      if (featureCards || heroSection || careerPage) {
-        const triggerElement = featureCards || heroSection || careerPage;
+      if (featureCards || heroSection || careerPage || blogPage) {
+        const triggerElement = featureCards || heroSection || careerPage || blogPage;
         const triggerTop = triggerElement.getBoundingClientRect().top;
 
         // Navbar changes once element reaches top of viewport
@@ -67,16 +68,22 @@ const Navbar = () => {
             Services
           </a>
           <a
-            href="/contact-us"
-            className={activeLink === 'contact-us' ? 'active' : ''}
-          >
-            Contact Us
-          </a>
-          <a
             href="/career"
             className={activeLink === 'career' ? 'active' : ''}
           >
             Career
+          </a>
+          <a
+            href="/blogs"
+            className={activeLink === 'blogs' ? 'active' : ''}
+          >
+            Blog
+          </a>
+                    <a
+            href="/contact-us"
+            className={activeLink === 'contact-us' ? 'active' : ''}
+          >
+            Contact Us
           </a>
         </div>
 
@@ -117,6 +124,12 @@ const Navbar = () => {
             className={activeLink === 'career' ? 'active' : ''}
           >
             Career
+      </a>
+              <a
+            href="/blogs"
+            className={activeLink === 'blogs' ? 'active' : ''}
+          >
+            Blog
       </a>
       </div>
     </nav>
