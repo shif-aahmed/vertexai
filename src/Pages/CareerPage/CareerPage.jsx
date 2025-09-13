@@ -36,6 +36,9 @@ export default function CareerPage() {
     password: "",
   });
 
+  // ✅ New: Message state
+  const [message, setMessage] = useState({ type: "", text: "" });
+
   // ✅ Listen to Firebase auth state
   useEffect(() => {
     const unsubscribe = onAuthStateChanged(auth, (user) => {
@@ -50,12 +53,12 @@ export default function CareerPage() {
 
   function validate() {
     const e = {};
-    if (!form.name.trim()) e.name = "Full name is required.";
+    if (!form.name.trim()) e.name = "Please enter your full name.";
     if (!form.email.match(/^[^\s@]+@[^\s@]+\.[^\s@]+$/))
-      e.email = "Please enter a valid email.";
-    if (!form.phone.trim()) e.phone = "Phone number is required.";
-    if (!form.pitch.trim()) e.pitch = "Tell us a little about yourself.";
-    if (!file) e.file = "Please upload your CV (PDF or DOC).";
+      e.email = "Please provide a valid email address.";
+    if (!form.phone.trim()) e.phone = "Your phone number is required.";
+    if (!form.pitch.trim()) e.pitch = "Tell us a bit about yourself.";
+    if (!file) e.file = "Please upload your CV (PDF, DOC, or DOCX).";
     setErrors(e);
     return Object.keys(e).length === 0;
   }
@@ -71,7 +74,7 @@ export default function CareerPage() {
     if (!allowed.includes(f.type)) {
       setErrors((prev) => ({
         ...prev,
-        file: "Accepted formats: PDF, DOC, DOCX.",
+        file: "Only PDF, DOC, or DOCX files are allowed.",
       }));
       setFile(null);
       return;
@@ -85,7 +88,6 @@ export default function CareerPage() {
     if (!validate()) return;
 
     try {
-      // Save to Firestore
       await addDoc(collection(db, "applications"), {
         ...form,
         fileName: file.name,
@@ -104,7 +106,6 @@ export default function CareerPage() {
 
       setApplicants((prev) => [newApplicant, ...prev]);
 
-      // Reset form but keep role
       setForm({
         name: "",
         email: "",
@@ -115,42 +116,34 @@ export default function CareerPage() {
       setFile(null);
       fileInputRef.current.value = null;
       setErrors({});
-      alert("✅ Application submitted successfully!");
+      setMessage({ type: "success", text: "Your application has been submitted successfully!" });
     } catch (error) {
-      alert("❌ Error submitting application: " + error.message);
+      setMessage({ type: "error", text: "Something went wrong while submitting your application. Please try again." });
     }
   }
 
-  // Login handler (Firebase)
+  // Login handler
   const handleLogin = async (e) => {
     e.preventDefault();
     try {
-      await signInWithEmailAndPassword(
-        auth,
-        loginForm.email,
-        loginForm.password
-      );
+      await signInWithEmailAndPassword(auth, loginForm.email, loginForm.password);
       setShowLogin(false);
-      alert("✅ Logged in successfully!");
+      setMessage({ type: "success", text: "You have logged in successfully!" });
     } catch (error) {
-      alert("❌ Login failed: " + error.message);
+      setMessage({ type: "error", text: "Login failed. Please check your email and password." });
     }
   };
 
-  // Signup handler (Firebase)
+  // Signup handler
   const handleSignup = async (e) => {
     e.preventDefault();
     try {
-      await createUserWithEmailAndPassword(
-        auth,
-        signupForm.email,
-        signupForm.password
-      );
+      await createUserWithEmailAndPassword(auth, signupForm.email, signupForm.password);
       setShowLogin(false);
       setIsSignup(false);
-      alert("✅ Account created successfully!");
+      setMessage({ type: "success", text: "Your account has been created successfully! Please log in to continue." });
     } catch (error) {
-      alert("❌ Signup failed: " + error.message);
+      setMessage({ type: "error", text: "Signup failed. Please try again with a different email or password." });
     }
   };
 
@@ -221,7 +214,6 @@ export default function CareerPage() {
         </header>
 
         <main className="career-main">
-          {/* Application form only visible after login/signup */}
           {isLoggedIn && (
             <section id="apply" className="apply-section fade-on-scroll visible">
               <div className="form-column">
@@ -391,6 +383,11 @@ export default function CareerPage() {
         {showLogin && !isLoggedIn && (
           <div className="overlay">
             <div className="login-box">
+              {message.text && (
+                <div className={`message-box ${message.type}`}>
+                  {message.text}
+                </div>
+              )}
               {!isSignup ? (
                 <>
                   <h2>Login to Apply</h2>

@@ -283,3 +283,24 @@
     max-height: 200px;
   }
 }
+/* Message box inside overlay */
+.message-box {
+  margin-bottom: 1rem;
+  padding: 0.8rem 1rem;
+  border-radius: 6px;
+  font-size: 0.95rem;
+  text-align: center;
+  font-weight: 500;
+}
+
+.message-box.success {
+  background: #e6ffed;
+  color: #2f855a;
+  border: 1px solid #38a169;
+}
+
+.message-box.error {
+  background: #ffe6e6;
+  color: #c53030;
+  border: 1px solid #e53e3e;
+}

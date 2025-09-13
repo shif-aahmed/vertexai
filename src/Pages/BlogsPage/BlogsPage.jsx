@@ -34,6 +34,9 @@ const BlogsPage = () => {
   // Selected blog
   const [selectedBlog, setSelectedBlog] = useState(null);
 
+  // Message state
+  const [message, setMessage] = useState({ type: "", text: "" });
+
   // Listen to Firebase Auth state
   useEffect(() => {
     const unsubscribe = onAuthStateChanged(auth, (user) => {
@@ -62,15 +65,36 @@ const BlogsPage = () => {
     fetchBlogs();
   }, []);
 
+  // Format error messages into user-friendly text
+  const formatErrorMessage = (errorCode, context) => {
+    switch (errorCode) {
+      case "auth/user-not-found":
+        return "❌ Login failed: This account does not exist. Please sign up first.";
+      case "auth/wrong-password":
+        return "❌ Login failed: The password you entered is incorrect.";
+      case "auth/invalid-email":
+        return "❌ Login failed: Please enter a valid email address.";
+      case "auth/email-already-in-use":
+        return "❌ Signup failed: This email is already registered. Try logging in instead.";
+      case "auth/weak-password":
+        return "❌ Signup failed: Password should be at least 6 characters long.";
+      default:
+        return `❌ ${context} failed: Something went wrong. Please try again.`;
+    }
+  };
+
   // Handle login (Firebase)
   const handleLogin = async (e) => {
     e.preventDefault();
     try {
       await signInWithEmailAndPassword(auth, loginForm.email, loginForm.password);
       setShowLogin(false);
-      alert("✅ Logged in successfully!");
+      setMessage({ type: "success", text: "✅ Logged in successfully!" });
     } catch (error) {
-      alert("❌ Login failed: " + error.message);
+      setMessage({
+        type: "error",
+        text: formatErrorMessage(error.code, "Login"),
+      });
     }
   };
 
@@ -85,9 +109,12 @@ const BlogsPage = () => {
       );
       setShowLogin(false);
       setIsSignup(false);
-      alert("✅ Account created successfully!");
+      setMessage({ type: "success", text: "✅ Account created successfully!" });
     } catch (error) {
-      alert("❌ Signup failed: " + error.message);
+      setMessage({
+        type: "error",
+        text: formatErrorMessage(error.code, "Signup"),
+      });
     }
   };
 
@@ -107,9 +134,12 @@ const BlogsPage = () => {
       setNewBlog({ title: "", content: "", author: "" });
       setSelectedBlog(newEntry);
 
-      alert("✅ Blog published!");
+      setMessage({ type: "success", text: "✅ Blog published successfully!" });
     } catch (err) {
-      alert("❌ Error saving blog: " + err.message);
+      setMessage({
+        type: "error",
+        text: "❌ Error saving blog. Please try again later.",
+      });
     }
   };
 
@@ -209,6 +239,11 @@ const BlogsPage = () => {
         {showLogin && !isLoggedIn && (
           <div className="overlay">
             <div className="login-box">
+              {message.text && (
+                <div className={`message-box ${message.type}`}>
+                  {message.text}
+                </div>
+              )}
               {!isSignup ? (
                 <>
                   <h2>Login to Write</h2>

@@ -15,6 +15,8 @@ const ContactUs = () => {
   });
 
   const [loading, setLoading] = useState(false);
+  const [errorMessage, setErrorMessage] = useState("");
+  const [successMessage, setSuccessMessage] = useState("");
 
   useEffect(() => {
     const elements = document.querySelectorAll(
@@ -39,12 +41,17 @@ const ContactUs = () => {
   // Handle form input change
   const handleChange = (e) => {
     setFormData({ ...formData, [e.target.name]: e.target.value });
+    setErrorMessage(""); // clear error while typing
+    setSuccessMessage(""); // clear success while typing
   };
 
   // Handle form submission
   const handleSubmit = async (e) => {
     e.preventDefault();
     setLoading(true);
+    setErrorMessage("");
+    setSuccessMessage("");
+
     try {
       await addDoc(collection(db, "contacts"), {
         name: formData.name,
@@ -52,11 +59,19 @@ const ContactUs = () => {
         message: formData.message,
         createdAt: serverTimestamp(),
       });
-      alert("Message sent successfully ✅");
+      setSuccessMessage("Your message has been sent successfully ✅");
       setFormData({ name: "", email: "", message: "" });
     } catch (error) {
       console.error("Error saving contact message:", error);
-      alert("Something went wrong. Please try again.");
+
+      // Friendly error messages
+      if (error.code === "unavailable") {
+        setErrorMessage("The service is temporarily unavailable. Please try again in a moment.");
+      } else if (error.code === "invalid-argument") {
+        setErrorMessage("Some of the information entered is not valid. Please check and try again.");
+      } else {
+        setErrorMessage("Something went wrong. Please try again later.");
+      }
     }
     setLoading(false);
   };
@@ -112,6 +127,15 @@ const ContactUs = () => {
                   required
                 ></textarea>
               </div>
+
+              {/* Error or success message */}
+              {errorMessage && (
+                <p className="text-danger mb-3">{errorMessage}</p>
+              )}
+              {successMessage && (
+                <p className="text-success mb-3">{successMessage}</p>
+              )}
+
               <button
                 type="submit"
                 className="btn btn-outline-info px-4"
