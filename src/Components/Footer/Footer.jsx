@@ -76,7 +76,7 @@ const Footer = () => {
             <div className="footer-contact col-12 col-md-3">
               <h4>Get In Touch</h4>
               <p>info@vertexaitec.com</p>
-              <p>+971 55 2900864</p>
+              {/* <p>+971 55 2900864</p> */}
               <p>+1 (904) 835-8539</p>
             </div>
           </div>

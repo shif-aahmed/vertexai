@@ -80,10 +80,10 @@ const ContactUs = () => {
                 <i className="bi bi-envelope-fill me-2 text-info"></i>
                 info@vertexaitec.com
               </p>
-              <p className="mb-4">
+              {/* <p className="mb-4">
                 <i className="bi bi-telephone-fill me-2 text-info"></i>
                 +971 55 2900864
-              </p>
+              </p> */}
               <p>
                 <i className="bi bi-telephone-fill me-2 text-info"></i>
                 +1 (904) 835-8539

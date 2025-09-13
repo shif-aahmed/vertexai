@@ -3,6 +3,15 @@ import React, { useState, useRef, useEffect } from "react";
 import "./CareerPage.css";
 import HeroSection from "../../Components/HeroSection/HeroSection";
 
+// Firebase imports
+import { auth, db } from "../../firebase";
+import {
+  createUserWithEmailAndPassword,
+  signInWithEmailAndPassword,
+  onAuthStateChanged,
+} from "firebase/auth";
+import { collection, addDoc } from "firebase/firestore";
+
 export default function CareerPage() {
   const [applicants, setApplicants] = useState([]);
   const [form, setForm] = useState({
@@ -26,6 +35,18 @@ export default function CareerPage() {
     email: "",
     password: "",
   });
+
+  // ✅ Listen to Firebase auth state
+  useEffect(() => {
+    const unsubscribe = onAuthStateChanged(auth, (user) => {
+      if (user) {
+        setIsLoggedIn(true);
+      } else {
+        setIsLoggedIn(false);
+      }
+    });
+    return () => unsubscribe();
+  }, []);
 
   function validate() {
     const e = {};
@@ -59,51 +80,77 @@ export default function CareerPage() {
     setFile(f);
   }
 
-  function handleSubmit(e) {
+  async function handleSubmit(e) {
     e.preventDefault();
     if (!validate()) return;
 
-    const id = Date.now();
-    const url = URL.createObjectURL(file);
-    const newApplicant = {
-      id,
-      ...form,
-      fileName: file.name,
-      fileUrl: url,
-      submittedAt: new Date().toISOString(),
-    };
+    try {
+      // Save to Firestore
+      await addDoc(collection(db, "applications"), {
+        ...form,
+        fileName: file.name,
+        submittedAt: new Date().toISOString(),
+      });
 
-    setApplicants((prev) => [newApplicant, ...prev]);
+      const id = Date.now();
+      const url = URL.createObjectURL(file);
+      const newApplicant = {
+        id,
+        ...form,
+        fileName: file.name,
+        fileUrl: url,
+        submittedAt: new Date().toISOString(),
+      };
 
-    // Reset form but keep role
-    setForm({
-      name: "",
-      email: "",
-      phone: "",
-      role: form.role,
-      pitch: "",
-    });
-    setFile(null);
-    fileInputRef.current.value = null;
-    setErrors({});
+      setApplicants((prev) => [newApplicant, ...prev]);
+
+      // Reset form but keep role
+      setForm({
+        name: "",
+        email: "",
+        phone: "",
+        role: form.role,
+        pitch: "",
+      });
+      setFile(null);
+      fileInputRef.current.value = null;
+      setErrors({});
+      alert("✅ Application submitted successfully!");
+    } catch (error) {
+      alert("❌ Error submitting application: " + error.message);
+    }
   }
 
-  // Login handler
-  const handleLogin = (e) => {
+  // Login handler (Firebase)
+  const handleLogin = async (e) => {
     e.preventDefault();
-    if (loginForm.email && loginForm.password) {
-      setIsLoggedIn(true);
+    try {
+      await signInWithEmailAndPassword(
+        auth,
+        loginForm.email,
+        loginForm.password
+      );
       setShowLogin(false);
+      alert("✅ Logged in successfully!");
+    } catch (error) {
+      alert("❌ Login failed: " + error.message);
     }
   };
 
-  // Signup handler
-  const handleSignup = (e) => {
+  // Signup handler (Firebase)
+  const handleSignup = async (e) => {
     e.preventDefault();
-    if (signupForm.name && signupForm.email && signupForm.password) {
-      setIsLoggedIn(true);
+    try {
+      await createUserWithEmailAndPassword(
+        auth,
+        signupForm.email,
+        signupForm.password
+      );
       setShowLogin(false);
       setIsSignup(false);
+      alert("✅ Account created successfully!");
+    } catch (error) {
+      alert("❌ Signup failed: " + error.message);
     }
   };
 
