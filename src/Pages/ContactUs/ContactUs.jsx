@@ -85,15 +85,15 @@ const ContactUs = () => {
                 +971 55 2900864
               </p>
               <p>
-                <i className="bi bi-phone-fill me-2 text-info"></i>
-                +92 339 0107478
+                <i className="bi bi-telephone-fill me-2 text-info"></i>
+                +1 (904) 835-8539
               </p>
             </div>
 
-            <div>
+            {/* <div>
               <h5 className="fw-bold mt-5">Quick Support</h5>
               <p className="h4 fw-bold mb-0 msg-us">+92 339 0107478</p>
-            </div>
+            </div> */}
           </div>
         </div>
       </div>

@@ -30,13 +30,13 @@ const Footer = () => {
                   <a href="https://www.facebook.com/profile.php?id=61579347417539"><FaFacebookF /></a>
                   <a href="https://www.instagram.com/vertexaitech/"><FaInstagram /></a>
                   <a href="https://www.linkedin.com/company/vertexai-tec"><FaLinkedin /></a>
-<a 
-  href="https://wa.me/923390107478" 
-  target="_blank" 
-  rel="noopener noreferrer"
->
-  <FaWhatsapp />
-</a>
+                  <a 
+                    href="https://wa.me/923390107478" 
+                    target="_blank" 
+                    rel="noopener noreferrer"
+                  >                 
+                    <FaWhatsapp />
+                  </a>
                
                 </div>
               </div>
@@ -77,7 +77,7 @@ const Footer = () => {
               <h4>Get In Touch</h4>
               <p>info@vertexaitec.com</p>
               <p>+971 55 2900864</p>
-              <p>+92 339 0107478</p>
+              <p>+1 (904) 835-8539</p>
             </div>
           </div>
 
