@@ -14,9 +14,9 @@ const Navbar = () => {
       const heroSection = document.querySelector('.contact-us-section');
       const careerPage = document.querySelector('.career-page');
       const blogPage = document.querySelector('.blogs-page');
-
-      if (featureCards || heroSection || careerPage || blogPage) {
-        const triggerElement = featureCards || heroSection || careerPage || blogPage;
+      const teamPage = document.querySelector('.our-team');
+      if (featureCards || heroSection || careerPage || blogPage || teamPage) {
+        const triggerElement = featureCards || heroSection || careerPage || blogPage || teamPage;
         const triggerTop = triggerElement.getBoundingClientRect().top;
 
         // Navbar changes once element reaches top of viewport
@@ -79,7 +79,13 @@ const Navbar = () => {
           >
             Blog
           </a>
-                    <a
+          <a
+            href="/team"
+            className={activeLink === 'team' ? 'active' : ''}
+          >
+            Our Team
+          </a>
+          <a
             href="/contact-us"
             className={activeLink === 'contact-us' ? 'active' : ''}
           >
@@ -114,23 +120,29 @@ const Navbar = () => {
           Services
         </a>
         <a
-          href="/contact-us"
-          className={activeLink === 'contact-us' ? 'active' : ''}
-        >
-          Contact Us
-        </a>
-        <a
             href="/career"
             className={activeLink === 'career' ? 'active' : ''}
           >
             Career
-      </a>
-              <a
+        </a>
+        <a
             href="/blogs"
             className={activeLink === 'blogs' ? 'active' : ''}
           >
             Blog
       </a>
+                <a
+            href="/team"
+            className={activeLink === 'team' ? 'active' : ''}
+          >
+            Our Team
+          </a>
+                  <a
+          href="/contact-us"
+          className={activeLink === 'contact-us' ? 'active' : ''}
+        >
+          Contact Us
+        </a>
       </div>
     </nav>
   );

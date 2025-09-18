@@ -46,18 +46,6 @@ const HeroSection = ({
       cards.forEach(card => observer.observe(card));
     }
 
-    // // Small floating particles
-    // const container = document.querySelector(".hero-particles");
-    // if (container && container.children.length === 0) {
-    //   for (let i = 0; i < 25; i++) {
-    //     const span = document.createElement("span");
-    //     span.style.left = Math.random() * 100 + "vw";
-    //     span.style.animationDelay = Math.random() * 12 + "s";
-    //     span.style.animationDuration = 8 + Math.random() * 8 + "s";
-    //     container.appendChild(span);
-    //   }
-    // }
-
   }, [showFeatureCards]);
 
   return (

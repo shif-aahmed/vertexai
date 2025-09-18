@@ -1,0 +1,219 @@
+.our-team {
+  padding: 60px 20px;
+  text-align: center;
+}
+
+.heading {
+  font-size: 2.5rem;
+  margin-bottom: 10px;
+  font-weight: bold;
+  color: #0d3b66;
+}
+
+.subheading {
+  font-size: 1.2rem;
+  margin-bottom: 40px;
+  color: #555;
+}
+
+.team-grid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 30px;
+  justify-items: center;
+}
+
+.team-card {
+  display: flex;
+  align-items: center;
+  gap: 20px;
+  background: #f8f8f8;
+  border-radius: 12px;
+  padding: 20px;
+  width: 100%;
+  max-width: 500px;
+  box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+}
+
+.team-img {
+  width: 100px;
+  height: 100px;
+  border-radius: 50%;
+  object-fit: cover;
+  border: 2px solid #0d3b66;
+}
+
+.team-info {
+  text-align: left;
+}
+
+.team-info h3 {
+  margin: 0;
+  font-size: 1.3rem;
+  font-weight: bold;
+}
+
+.team-info p {
+  margin: 5px 0 10px;
+  color: #666;
+}
+
+.profile-btn {
+  position: relative;
+  background: transparent;
+  color: #0d3b66;
+  border: none;
+  cursor: pointer;
+  padding: 5px 0;
+  font-size: 1rem;
+  font-weight: 500;
+}
+
+/* underline effect */
+.profile-btn::after {
+  content: "";
+  position: absolute;
+  left: 0;
+  bottom: -2px;
+  width: 100%;
+  height: 2px;
+  background: #0d3b66;
+  transform: scaleX(0);
+  transform-origin: left;
+  transition: transform 0.3s ease;
+}
+
+.profile-btn:hover::after {
+  transform: scaleX(1);
+}
+
+
+/* Overlay */
+.overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(0,0,0,0.5);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 999;
+}
+
+.overlay-content {
+  background: #fff;
+  padding: 30px;
+  border-radius: 12px;
+  text-align: center;
+  max-width: 400px;
+  width: 90%;
+  position: relative;
+}
+
+.overlay-img {
+  width: 120px;
+  height: 120px;
+  border-radius: 50%;
+  object-fit: cover;
+  margin-bottom: 20px;
+}
+
+.overlay-content h3 {
+  margin: 0;
+  font-size: 1.5rem;
+  font-weight: bold;
+}
+
+.overlay-content .designation {
+  font-size: 1rem;
+  color: #666;
+}
+
+.overlay-content .email {
+  margin: 10px 0;
+  color: #444;
+}
+
+.overlay-content a {
+  color: #0d3b66;
+  text-decoration: none;
+  font-weight: 500;
+}
+
+.overlay-content a:hover {
+  text-decoration: underline;
+}
+
+.close-btn {
+  position: absolute;
+  top: 10px;
+  right: 15px;
+  background: none;
+  border: none;
+  font-size: 1.2rem;
+  cursor: pointer;
+}
+/* Overlay side-by-side layout */
+.side-layout {
+  display: flex;
+  align-items: center;
+  gap: 20px;
+  max-width: 600px;
+  width: 90%;
+  text-align: left;
+}
+
+.overlay-left {
+  flex: 1;
+  text-align: center;
+}
+
+.overlay-right {
+  flex: 2;
+}
+
+.overlay-right h3 {
+  margin: 0 0 10px;
+  font-size: 1.5rem;
+  font-weight: bold;
+}
+
+.overlay-right .designation {
+  font-size: 1rem;
+  color: #666;
+  margin-bottom: 8px;
+}
+
+.overlay-right .email {
+  margin-bottom: 12px;
+  color: #444;
+}
+.linkedin-icon {
+  display: inline-block;
+  margin-top: 8px;
+  transition: transform 0.2s ease, color 0.2s ease;
+  color: #0077b5 !important; /* Default LinkedIn blue */
+}
+
+.linkedin-icon:hover {
+  transform: scale(1.1);
+  color: #0d3b66 !important; /* Darker blue on hover */
+}
+
+/* Responsive grid */
+@media (max-width: 768px) {
+  .team-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .side-layout {
+    flex-direction: column;
+    text-align: center;
+  }
+
+  .overlay-right {
+    text-align: center;
+  }
+}
