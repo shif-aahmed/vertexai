@@ -47,7 +47,7 @@ const teamMembers = [
   },
   {
     id: 5,
-    name: "Ethan Lee",
+    name: "Naima Zahir",
     designation: "HR Executive",
     email: "xyz@example.com",
     linkedin: "https://linkedin.com/in/ethan",
