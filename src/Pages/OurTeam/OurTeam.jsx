@@ -11,13 +11,14 @@ import pm from "../../assets/images/pm.png";
 import UI from "../../assets/images/ui-ux-manager.png";
 import reactNative from "../../assets/images/react-native-engineer.png";
 import aiIntern from "../../assets/images/ai-intern.png";
+import aiIntern2 from "../../assets/images/ai-intern2.jpg";
 
 const teamMembers = [
   {
     id: 1,
     name: "Daud Ali",
     designation: "Chief Executive Officer",
-    linkedin: "https://linkedin.com/in/alice",
+    linkedin: "https://www.linkedin.com/in/daud-ali-0006a532a/",
     image: ceo
   },
   {
@@ -31,7 +32,7 @@ const teamMembers = [
     id: 3,
     name: "Rizwan Shehzad",
     designation: "Chief Technology Officer",
-    linkedin: "https://linkedin.com/in/charlie",
+    linkedin: "https://www.linkedin.com/in/rizwan-shehzad-80b357166/",
     image: cto
   },
   {
@@ -44,7 +45,7 @@ const teamMembers = [
   {
     id: 5,
     name: "Naima Zahir",
-    designation: "naeema.zahir@vertexaitec.com",
+    designation: "HR Executive",
     linkedin: "http://www.linkedin.com/in/naeema-zahir-092257326",
     image: hrExecutive
   },
@@ -75,6 +76,13 @@ const teamMembers = [
     designation: "AI/ML Intern",
     linkedin: "https://linkedin.com/in/hannah",
     image: aiIntern
+  },
+    {
+    id: 10,
+    name: "Ahmed Noor",
+    designation: "AI/ML Intern",
+    linkedin: "https://linkedin.com/in/hannah",
+    image: aiIntern2
   }
 ];
 
