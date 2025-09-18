@@ -118,6 +118,7 @@
   border-radius: 50%;
   object-fit: cover;
   margin-bottom: 20px;
+  border: 2px solid #0d3b66;
 }
 
 .overlay-content h3 {
@@ -200,6 +201,22 @@
 .linkedin-icon:hover {
   transform: scale(1.1);
   color: #0d3b66 !important; /* Darker blue on hover */
+}
+.heading-animated span {
+  display: inline-block;
+  opacity: 0;
+  transform: translateY(20px);
+}
+
+.heading-animated.animate span {
+  animation: fadeUp 0.5s forwards;
+}
+
+@keyframes fadeUp {
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
 }
 
 /* Responsive grid */

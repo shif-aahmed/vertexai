@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import HeroSection from "../../Components/HeroSection/HeroSection";
 import "./OurTeam.css";
 import { FaLinkedin } from "react-icons/fa";
@@ -17,15 +17,13 @@ const teamMembers = [
     id: 1,
     name: "Daud Ali",
     designation: "Chief Executive Officer",
-    email: "xyz@example.com",
     linkedin: "https://linkedin.com/in/alice",
     image: ceo
   },
   {
     id: 2,
     name: "Umair",
-    designation: "stakeholder",
-    email: "xyz@example.com",
+    designation: "Director",
     linkedin: "https://linkedin.com/in/bob",
     image: stakeholder
   },
@@ -33,7 +31,6 @@ const teamMembers = [
     id: 3,
     name: "Rizwan Shehzad",
     designation: "Chief Technology Officer",
-    email: "xyz@example.com",
     linkedin: "https://linkedin.com/in/charlie",
     image: cto
   },
@@ -41,23 +38,20 @@ const teamMembers = [
     id: 4,
     name: "Aroob Tahir",
     designation: "HR Manager",
-    email: "xyz@example.com",
-    linkedin: "https://linkedin.com/in/diana",
+    linkedin: "http://www.linkedin.com/in/aroob-tahir-249526184",
     image: hrManager
   },
   {
     id: 5,
     name: "Naima Zahir",
-    designation: "HR Executive",
-    email: "xyz@example.com",
-    linkedin: "https://linkedin.com/in/ethan",
+    designation: "naeema.zahir@vertexaitec.com",
+    linkedin: "http://www.linkedin.com/in/naeema-zahir-092257326",
     image: hrExecutive
   },
   {
     id: 6,
     name: "Noraiz Choudhary",
     designation: "Project Manager",
-    email: "xyz@example.com",
     linkedin: "https://linkedin.com/in/fiona",
     image: pm
   },
@@ -65,7 +59,6 @@ const teamMembers = [
     id: 7,
     name: "Muhammad Danish",
     designation: "UI/UX Designer",
-    email: "xyz@example.com",
     linkedin: "https://linkedin.com/in/george",
     image: UI
   },
@@ -73,15 +66,13 @@ const teamMembers = [
     id: 8,
     name: "Muhammad Abdullah",
     designation: "React Native Engineer",
-    email: "xyz@example.com",
     linkedin: "https://linkedin.com/in/hannah",
     image: reactNative
   },
-    {
-    id: 8,
+  {
+    id: 9,
     name: "Alishba Abbas",
     designation: "AI/ML Intern",
-    email: "xyz@example.com",
     linkedin: "https://linkedin.com/in/hannah",
     image: aiIntern
   }
@@ -89,6 +80,22 @@ const teamMembers = [
 
 export default function OurTeam() {
   const [selectedMember, setSelectedMember] = useState(null);
+  const [animateHeading, setAnimateHeading] = useState(false);
+
+  useEffect(() => {
+    const handleScroll = () => {
+      const heading = document.querySelector(".heading-animated");
+      if (heading) {
+        const rect = heading.getBoundingClientRect();
+        if (rect.top < window.innerHeight * 0.8) {
+          setAnimateHeading(true);
+        }
+      }
+    };
+    window.addEventListener("scroll", handleScroll);
+    handleScroll();
+    return () => window.removeEventListener("scroll", handleScroll);
+  }, []);
 
   return (
     <>
@@ -104,7 +111,18 @@ export default function OurTeam() {
 
       <section className="our-team">
         <div className="container">
-          <h2 className="heading">Meet the Team</h2>
+          <h2
+            className={`heading heading-animated ${
+              animateHeading ? "animate" : ""
+            }`}
+          >
+            {"Meet the Team".split("").map((char, i) => (
+              <span key={i} style={{ animationDelay: `${i * 0.05}s` }}>
+                {char === " " ? "\u00A0" : char}
+              </span>
+            ))}
+
+          </h2>
           <p className="subheading">
             The innovators, engineers, and creators driving our mission to build
             the future of AI together.
@@ -152,8 +170,7 @@ export default function OurTeam() {
               </div>
               <div className="overlay-right">
                 <h3>{selectedMember.name}</h3>
-                <p className="designation">Designation: {selectedMember.designation}</p>
-                <p className="email">Email: {selectedMember.email}</p>
+                <p className="designation"> {selectedMember.designation}</p>
                 <a
                   href={selectedMember.linkedin}
                   target="_blank"
