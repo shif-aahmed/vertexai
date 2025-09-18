@@ -22,7 +22,7 @@ const teamMembers = [
   },
   {
     id: 2,
-    name: "Umair",
+    name: "Umair Manzoor",
     designation: "Director",
     linkedin: "https://linkedin.com/in/bob",
     image: stakeholder
