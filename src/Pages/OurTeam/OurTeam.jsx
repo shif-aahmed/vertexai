@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from "react";
 import HeroSection from "../../Components/HeroSection/HeroSection";
 import "./OurTeam.css";
-import { FaLinkedin } from "react-icons/fa";
+import { FaLinkedin, FaTwitter, FaInstagram } from "react-icons/fa";
 import ceo from "../../assets/images/ceo.png";
 import cto from "../../assets/images/cto.png";
 import stakeholder from "../../assets/images/stakeholder.jpg";
@@ -19,6 +19,8 @@ const teamMembers = [
     name: "Daud Ali",
     designation: "Chief Executive Officer",
     linkedin: "https://www.linkedin.com/in/daud-ali-0006a532a/",
+    instagram: "https://instagram.com/example",
+    twitter: "https://twitter.com/example",
     image: ceo
   },
   {
@@ -26,6 +28,8 @@ const teamMembers = [
     name: "Umair Manzoor",
     designation: "Director",
     linkedin: "https://linkedin.com/in/bob",
+    instagram: "https://instagram.com/example",
+    twitter: "https://twitter.com/example",
     image: stakeholder
   },
   {
@@ -33,6 +37,8 @@ const teamMembers = [
     name: "Rizwan Shehzad",
     designation: "Chief Technology Officer",
     linkedin: "https://www.linkedin.com/in/rizwan-shehzad-80b357166/",
+    instagram: "https://instagram.com/example",
+    twitter: "https://twitter.com/example",
     image: cto
   },
   {
@@ -40,6 +46,8 @@ const teamMembers = [
     name: "Aroob Tahir",
     designation: "HR Manager",
     linkedin: "http://www.linkedin.com/in/aroob-tahir-249526184",
+    instagram: "https://instagram.com/example",
+    twitter: "https://twitter.com/example",
     image: hrManager
   },
   {
@@ -47,13 +55,17 @@ const teamMembers = [
     name: "Naima Zahir",
     designation: "HR Executive",
     linkedin: "http://www.linkedin.com/in/naeema-zahir-092257326",
+    instagram: "https://instagram.com/example",
+    twitter: "https://twitter.com/example",
     image: hrExecutive
   },
   {
     id: 6,
     name: "Noraiz Choudhary",
     designation: "Project Manager",
-    linkedin: "https://linkedin.com/in/fiona",
+    linkedin: "https://www.linkedin.com/in/noraiz-choudhary-295734385/",
+    instagram: "https://instagram.com/example",
+    twitter: "https://twitter.com/example",
     image: pm
   },
   {
@@ -61,6 +73,8 @@ const teamMembers = [
     name: "Muhammad Danish",
     designation: "UI/UX Designer",
     linkedin: "https://linkedin.com/in/george",
+    instagram: "https://instagram.com/example",
+    twitter: "https://twitter.com/example",
     image: UI
   },
   {
@@ -68,6 +82,8 @@ const teamMembers = [
     name: "Muhammad Abdullah",
     designation: "React Native Engineer",
     linkedin: "https://linkedin.com/in/hannah",
+    instagram: "https://instagram.com/example",
+    twitter: "https://twitter.com/example",
     image: reactNative
   },
   {
@@ -75,13 +91,17 @@ const teamMembers = [
     name: "Alishba Abbas",
     designation: "AI/ML Intern",
     linkedin: "https://linkedin.com/in/hannah",
+    instagram: "https://instagram.com/example",
+    twitter: "https://twitter.com/example",
     image: aiIntern
   },
-    {
+  {
     id: 10,
     name: "Ahmed Noor",
     designation: "AI/ML Intern",
     linkedin: "https://linkedin.com/in/hannah",
+    instagram: "https://instagram.com/example",
+    twitter: "https://twitter.com/example",
     image: aiIntern2
   }
 ];
@@ -129,7 +149,6 @@ export default function OurTeam() {
                 {char === " " ? "\u00A0" : char}
               </span>
             ))}
-
           </h2>
           <p className="subheading">
             The innovators, engineers, and creators driving our mission to build
@@ -178,15 +197,31 @@ export default function OurTeam() {
               </div>
               <div className="overlay-right">
                 <h3>{selectedMember.name}</h3>
-                <p className="designation"> {selectedMember.designation}</p>
-                <a
-                  href={selectedMember.linkedin}
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="linkedin-icon"
-                >
-                  <FaLinkedin size={28} />
-                </a>
+                <p className="designation">{selectedMember.designation}</p>
+
+                <div className="social-icons">
+                  <a
+                    href={selectedMember.linkedin}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                  >
+                    <FaLinkedin size={23} />
+                  </a>
+                  <a
+                    href={selectedMember.instagram}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                  >
+                    <FaInstagram size={23} />
+                  </a>
+                  <a
+                    href={selectedMember.twitter}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                  >
+                    <FaTwitter size={23} />
+                  </a>
+                </div>
               </div>
             </div>
           </div>

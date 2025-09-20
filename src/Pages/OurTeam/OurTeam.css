@@ -234,3 +234,19 @@
     text-align: center;
   }
 }
+.social-icons {
+  display: flex;
+  flex-direction: row;
+  gap: 15px;
+  margin-top: 10px;
+}
+
+.social-icons a {
+  color: #333;
+  transition: color 0.3s ease;
+  
+}
+
+.social-icons a:hover {
+  color: #0077b5; /* LinkedIn blue as hover */
+}
