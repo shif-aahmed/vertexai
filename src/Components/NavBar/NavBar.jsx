@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { FaBars, FaTimes } from 'react-icons/fa';
+import { Link } from 'react-router-dom';
 import './NavBar.css';
 import logo from '../../assets/images/vertexai-logo.png';
 
@@ -16,10 +17,10 @@ const Navbar = () => {
       const blogPage = document.querySelector('.blogs-page');
       const teamPage = document.querySelector('.our-team');
       if (featureCards || heroSection || careerPage || blogPage || teamPage) {
-        const triggerElement = featureCards || heroSection || careerPage || blogPage || teamPage;
+        const triggerElement =
+          featureCards || heroSection || careerPage || blogPage || teamPage;
         const triggerTop = triggerElement.getBoundingClientRect().top;
 
-        // Navbar changes once element reaches top of viewport
         if (triggerTop <= 80) {
           setScrolled(true);
         } else {
@@ -42,55 +43,53 @@ const Navbar = () => {
       <div className="navbar-container">
         {/* Logo */}
         <div className="navbar-logo">
-          <a href="/">
+          <Link to="/">
             <img src={logo} alt="Logo" />
-          </a>
+          </Link>
         </div>
 
         {/* Desktop Menu */}
         <div className="navbar-menu">
-          <a
-            href="/"
-            className={activeLink === 'home' ? 'active' : ''}
-          >
+          <Link to="/" className={activeLink === 'home' ? 'active' : ''}>
             Home
-          </a>
-          <a
+          </Link>
+          {/* <Link
             onClick={() => handleSectionClick('about-us')}
             className={activeLink === 'about-us' ? 'active' : ''}
           >
             About
-          </a>
-          <a
+          </Link> */}
+          <Link
             onClick={() => handleSectionClick('services')}
             className={activeLink === 'services' ? 'active' : ''}
           >
             Services
-          </a>
-          <a
-            href="/career"
-            className={activeLink === 'career' ? 'active' : ''}
-          >
+          </Link>
+          <Link to="/career" className={activeLink === 'career' ? 'active' : ''}>
             Career
-          </a>
-          <a
-            href="/blogs"
-            className={activeLink === 'blogs' ? 'active' : ''}
-          >
+          </Link>
+          <Link to="/blogs" className={activeLink === 'blogs' ? 'active' : ''}>
             Blog
-          </a>
-          <a
-            href="/team"
-            className={activeLink === 'team' ? 'active' : ''}
-          >
+          </Link>
+          <Link to="/team" className={activeLink === 'team' ? 'active' : ''}>
             Our Team
-          </a>
-          <a
-            href="/contact-us"
+          </Link>
+          <Link
+            to="/contact-us"
             className={activeLink === 'contact-us' ? 'active' : ''}
           >
             Contact Us
-          </a>
+          </Link>
+
+          {/* Google Button */}
+          <Link
+            to="https://www.google.com"
+            target="_blank"
+            rel="noopener noreferrer"
+            className="google-btn"
+          >
+            Google
+          </Link>
         </div>
 
         {/* Mobile Menu Button */}
@@ -101,48 +100,46 @@ const Navbar = () => {
 
       {/* Mobile Menu Dropdown */}
       <div className={`mobile-menu ${isOpen ? 'active' : ''}`}>
-        <a
-          href="/"
-          className={activeLink === 'home' ? 'active' : ''}
-        >
+        <Link to="/" className={activeLink === 'home' ? 'active' : ''}>
           Home
-        </a>
-        <a
+        </Link>
+        <Link
           onClick={() => handleSectionClick('about-us')}
           className={activeLink === 'about-us' ? 'active' : ''}
         >
           About
-        </a>
-        <a
+        </Link>
+        <Link
           onClick={() => handleSectionClick('services')}
           className={activeLink === 'services' ? 'active' : ''}
         >
           Services
-        </a>
-        <a
-            href="/career"
-            className={activeLink === 'career' ? 'active' : ''}
-          >
-            Career
-        </a>
-        <a
-            href="/blogs"
-            className={activeLink === 'blogs' ? 'active' : ''}
-          >
-            Blog
-      </a>
-                <a
-            href="/team"
-            className={activeLink === 'team' ? 'active' : ''}
-          >
-            Our Team
-          </a>
-                  <a
-          href="/contact-us"
+        </Link>
+        <Link to="/career" className={activeLink === 'career' ? 'active' : ''}>
+          Career
+        </Link>
+        <Link to="/blogs" className={activeLink === 'blogs' ? 'active' : ''}>
+          Blog
+        </Link>
+        <Link to="/team" className={activeLink === 'team' ? 'active' : ''}>
+          Our Team
+        </Link>
+        <Link
+          to="/contact-us"
           className={activeLink === 'contact-us' ? 'active' : ''}
         >
           Contact Us
-        </a>
+        </Link>
+
+        {/* Google Button for Mobile */}
+        <Link
+          to="https://www.google.com"
+          target="_blank"
+          rel="noopener noreferrer"
+          className="google-btn"
+        >
+          Google
+        </Link>
       </div>
     </nav>
   );

@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from "react";
 import HeroSection from "../../Components/HeroSection/HeroSection";
 import "./OurTeam.css";
-import { FaLinkedin, FaXTwitter , FaInstagram } from "react-icons/fa6";
+import { FaLinkedin, FaXTwitter, FaInstagram } from "react-icons/fa6";
 import ceo from "../../assets/images/ceo.png";
 import cto from "../../assets/images/cto.png";
 import stakeholder from "../../assets/images/stakeholder.jpg";
@@ -21,7 +21,7 @@ const teamMembers = [
     linkedin: "https://www.linkedin.com/in/daud-ali-0006a532a/",
     instagram: "https://instagram.com/example",
     twitter: "https://twitter.com/example",
-    image: ceo
+    image: ceo,
   },
   {
     id: 2,
@@ -30,7 +30,7 @@ const teamMembers = [
     linkedin: "https://linkedin.com/in/bob",
     instagram: "https://instagram.com/example",
     twitter: "https://twitter.com/example",
-    image: stakeholder
+    image: stakeholder,
   },
   {
     id: 3,
@@ -39,7 +39,7 @@ const teamMembers = [
     linkedin: "https://www.linkedin.com/in/rizwan-shehzad-80b357166/",
     instagram: "https://instagram.com/example",
     twitter: "https://twitter.com/example",
-    image: cto
+    image: cto,
   },
   {
     id: 4,
@@ -48,7 +48,7 @@ const teamMembers = [
     linkedin: "http://www.linkedin.com/in/aroob-tahir-249526184",
     instagram: "https://instagram.com/example",
     twitter: "https://twitter.com/example",
-    image: hrManager
+    image: hrManager,
   },
   {
     id: 5,
@@ -57,7 +57,7 @@ const teamMembers = [
     linkedin: "http://www.linkedin.com/in/naeema-zahir-092257326",
     instagram: "https://instagram.com/example",
     twitter: "https://twitter.com/example",
-    image: hrExecutive
+    image: hrExecutive,
   },
   {
     id: 6,
@@ -66,7 +66,7 @@ const teamMembers = [
     linkedin: "https://www.linkedin.com/in/noraiz-choudhary-295734385/",
     instagram: "https://www.instagram.com/noraiz.vertexai/",
     twitter: "https://x.com/NoraizVertexai",
-    image: pm
+    image: pm,
   },
   {
     id: 7,
@@ -75,7 +75,7 @@ const teamMembers = [
     linkedin: "https://linkedin.com/in/george",
     instagram: "https://instagram.com/example",
     twitter: "https://twitter.com/example",
-    image: UI
+    image: UI,
   },
   {
     id: 8,
@@ -84,7 +84,7 @@ const teamMembers = [
     linkedin: "https://linkedin.com/in/hannah",
     instagram: "https://instagram.com/example",
     twitter: "https://twitter.com/example",
-    image: reactNative
+    image: reactNative,
   },
   {
     id: 9,
@@ -93,7 +93,7 @@ const teamMembers = [
     linkedin: "https://linkedin.com/in/hannah",
     instagram: "https://instagram.com/example",
     twitter: "https://twitter.com/example",
-    image: aiIntern
+    image: aiIntern,
   },
   {
     id: 10,
@@ -102,8 +102,8 @@ const teamMembers = [
     linkedin: "https://linkedin.com/in/hannah",
     instagram: "https://instagram.com/example",
     twitter: "https://twitter.com/example",
-    image: aiIntern2
-  }
+    image: aiIntern2,
+  },
 ];
 
 export default function OurTeam() {
@@ -200,6 +200,7 @@ export default function OurTeam() {
                 <p className="designation">{selectedMember.designation}</p>
 
                 <div className="social-icons">
+                  {/* LinkedIn always visible */}
                   <a
                     href={selectedMember.linkedin}
                     target="_blank"
@@ -207,20 +208,26 @@ export default function OurTeam() {
                   >
                     <FaLinkedin size={23} />
                   </a>
-                  <a
-                    href={selectedMember.instagram}
-                    target="_blank"
-                    rel="noopener noreferrer"
-                  >
-                    <FaInstagram size={23} />
-                  </a>
-                  <a
-                    href={selectedMember.twitter}
-                    target="_blank"
-                    rel="noopener noreferrer"
-                  >
-                    <FaXTwitter   size={23} />
-                  </a>
+
+                  {/* Instagram + Twitter only for IDs 1, 2, 6 */}
+                  {[1, 2, 6].includes(selectedMember.id) && (
+                    <>
+                      <a
+                        href={selectedMember.instagram}
+                        target="_blank"
+                        rel="noopener noreferrer"
+                      >
+                        <FaInstagram size={23} />
+                      </a>
+                      <a
+                        href={selectedMember.twitter}
+                        target="_blank"
+                        rel="noopener noreferrer"
+                      >
+                        <FaXTwitter size={23} />
+                      </a>
+                    </>
+                  )}
                 </div>
               </div>
             </div>

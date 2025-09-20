@@ -14,15 +14,6 @@
 .navbar.scrolled {
   background: linear-gradient(to bottom right, #011d45 40%, #000b1a 60%) !important;
 }
-.navbar {
-  position: fixed !important;
-  top: 0;
-  left: 0;
-  width: 100%;
-  z-index: 1000;
-  overflow: hidden;
-  background: rgba(0, 0, 0, 0); /* base transparent background */
-}
 
 .navbar::before {
   content: "";
@@ -38,7 +29,6 @@
   opacity: 1; /* fades in smoothly */
 }
 
-
 .navbar-container {
   display: flex;
   align-items: center;
@@ -51,8 +41,8 @@
 }
 
 .navbar-logo {
-  margin-right: 3rem; 
-  margin-left: 0.4rem;  
+  margin-right: 3rem;
+  margin-left: 0.4rem;
   scale: 1.8;
 }
 
@@ -63,27 +53,31 @@
   text-decoration: none;
 }
 
+/* Desktop menu container */
 .navbar-menu {
   display: flex;
   gap: 3.5rem;
   flex-grow: 1;
+  align-items: center;
 }
 
-.navbar-menu a {
+/* ---------- GENERIC LINK STYLES (EXCLUDING THE GOOGLE BUTTON) ---------- */
+/* Exclude .google-btn from the underline/hover link rules so it behaves independently */
+.navbar-menu a:not(.google-btn) {
   color: #fefcfc;
   text-decoration: none;
   font-weight: 500;
-  font-size: 1rem; 
+  font-size: 1rem;
   position: relative; /* for underline */
   transition: color 0.3s;
 }
 
-.navbar-menu a:hover,
-.navbar-menu a.active {
+.navbar-menu a:not(.google-btn):hover,
+.navbar-menu a:not(.google-btn).active {
   color: #ffffff;
 }
 
-.navbar-menu a::after {
+.navbar-menu a:not(.google-btn)::after {
   content: '';
   position: absolute;
   width: 0;
@@ -94,35 +88,37 @@
   transition: width 0.3s;
 }
 
-.navbar-menu a:hover::after,
-.navbar-menu a.active::after {
+.navbar-menu a:not(.google-btn):hover::after,
+.navbar-menu a:not(.google-btn).active::after {
   width: 100%;
 }
 
+/* Keep cursor pointer for all anchors (including google button) */
 .navbar-menu a,
 .mobile-menu a {
   cursor: pointer;
 }
 
-/* Mobile Menu Links */
-.mobile-menu a {
-  display: block;             
-  width: 100%;                
-  color: white; 
+/* ---------- MOBILE MENU LINKS (EXCLUDING THE GOOGLE BUTTON) ---------- */
+.mobile-menu a:not(.google-btn) {
+  display: block;
+  width: 100%;
+  color: white;
   text-decoration: none;
   font-weight: 500;
   font-size: 1rem;
-  padding: 0.75rem 0;         
+  padding: 0.75rem 0;
   border-bottom: 1px solid rgba(255, 255, 255, 0.1);
   position: relative;
   transition: color 0.3s ease;
 }
-.mobile-menu a:hover,
-.mobile-menu a.active {
+
+.mobile-menu a:not(.google-btn):hover,
+.mobile-menu a:not(.google-btn).active {
   color: #ffffff;
 }
 
-.mobile-menu a::after {
+.mobile-menu a:not(.google-btn)::after {
   content: '';
   position: absolute;
   width: 0;
@@ -133,11 +129,12 @@
   transition: width 0.3s;
 }
 
-.mobile-menu a:hover::after,
-.mobile-menu a.active::after {
+.mobile-menu a:not(.google-btn):hover::after,
+.mobile-menu a:not(.google-btn).active::after {
   width: 100%;
 }
 
+/* ---------- MOBILE MENU BUTTON (hamburger) ---------- */
 .mobile-menu-btn {
   display: none;
   font-size: 1.5rem;
@@ -154,55 +151,98 @@
   background: linear-gradient(to bottom right, #011d45 40%, #000b1a 60%) !important;
 }
 
+/* When mobile menu is active show it */
 .mobile-menu.active {
   display: flex;
 }
 
+/* Default mobile-menu link appearance (non-google) */
 .mobile-menu a {
-  color: #333;
+  /* the non-google style is defined above; this block acts as fallback */
+  color: white;
   text-decoration: none;
   font-weight: 500;
   font-size: 1rem;
-  border-bottom: 1px solid #ccc;
-  padding: 0.5rem 0;
-  transition: color 0.3s;
+  padding: 0.75rem 0;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.1);
 }
 
+/* --------------------------------------------------------------------- */
+/* ------------------ GOOGLE BUTTON — fully isolated -------------------- */
+/* --------------------------------------------------------------------- */
+/* Desktop Google button (completely separate from the other link rules) */
+.google-btn {
+  margin-left: auto; /* pushes Google button to the far right inside .navbar-menu */
+  background-color: navy;
+  color: white !important;
+  padding: 0.5rem 1.2rem;
+  border-radius: 30px;
+  font-weight: 600;
+  text-decoration: none !important; /* removes underline */
+  transition: background-color 0.3s ease, transform 0.08s;
+  display: inline-block;
+  border: none;
+  box-shadow: none;
+}
+
+/* Remove any underline pseudo-element specifically for google button */
+.navbar-menu .google-btn::after,
+.mobile-menu .google-btn::after,
+.google-btn::after {
+  display: none !important;
+  width: 0 !important;
+  content: none !important;
+}
+
+/* Hover/focus states for the google button */
+.google-btn:hover,
+.google-btn:focus {
+  background-color: #3b4da3; /* lighter navy on hover */
+  text-decoration: none !important; /* ensure no underline on hover */
+  outline: none;
+}
+
+/* Slight press feedback */
+.google-btn:active {
+  transform: translateY(1px);
+}
+
+/* ----------------- Responsive adjustments (mobile) -------------------- */
 @media (max-width: 768px) {
   .navbar-menu {
-    display: none; 
+    display: none;
   }
 
   .navbar-container {
     display: flex;
-    justify-content: space-between; 
+    justify-content: space-between;
     align-items: center;
     width: 100%;
   }
 
   .navbar-logo {
-    margin-right: auto; 
+    margin-right: auto;
   }
 
   .mobile-menu-btn {
     display: block;
     margin-left: 0;
-    color: white; 
+    color: white;
     cursor: pointer;
     transition: color 0.3s ease;
   }
 
   .mobile-menu-btn:hover {
-    color: #fdfefe; 
+    color: #fdfefe;
   }
 
   .mobile-menu {
     display: none;
     flex-direction: column;
-    gap: 0; 
-    padding: 0; 
-  background: linear-gradient(to bottom right, #011d45 40%, #000b1a 60%) !important;
-    align-items: flex-start; 
+    gap: 0;
+    padding: 0;
+    background: linear-gradient(to bottom right, #011d45 40%, #000b1a 60%) !important;
+    align-items: flex-start;
     margin-top: 50px;
   }
 
@@ -211,19 +251,48 @@
   }
 
   .mobile-menu a {
-    display: block;             
-    width: 100%;                
-    color: white; 
+    display: block;
+    width: 100%;
+    color: white;
     text-decoration: none;
     font-weight: 500;
     font-size: 1rem;
-    padding: 0.75rem 0;         
+    padding: 0.75rem 0;
     border-bottom: 1px solid rgba(255, 255, 255, 0.1);
     transition: color 0.3s ease;
   }
 
   .mobile-menu a:hover {
     color: #f6f8f8;
-    background-color: rgba(255, 255, 255, 0.05); 
+    background-color: rgba(255, 255, 255, 0.05);
   }
+
+  /* Mobile-specific Google button: keep it visually distinct and align it to the right */
+  .mobile-menu .google-btn {
+    align-self: flex-end;
+    margin-top: 0.6rem;
+    padding: 0.6rem 1.1rem;
+    border-radius: 30px;
+    background-color: navy;
+    color: white !important;
+    text-decoration: none !important;
+  }
+
+  .mobile-menu .google-btn:hover {
+    background-color: #3b4da3;
+  }
+}
+
+/* Additional small touches kept from original file (bottom rules) */
+/* Google Button (desktop fallback) */
+.google-btn {
+  /* margin-left is already set above — keep here for clarity */
+  /* margin-left: auto !important; */
+}
+
+/* Ensure google button never shows underline from any inherited rule */
+.google-btn,
+.google-btn:link,
+.google-btn:visited {
+  text-decoration: none !important;
 }
