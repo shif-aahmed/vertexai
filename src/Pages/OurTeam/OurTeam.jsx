@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from "react";
 import HeroSection from "../../Components/HeroSection/HeroSection";
 import "./OurTeam.css";
-import { FaLinkedin, FaTwitter, FaInstagram } from "react-icons/fa";
+import { FaLinkedin, FaXTwitter , FaInstagram } from "react-icons/fa6";
 import ceo from "../../assets/images/ceo.png";
 import cto from "../../assets/images/cto.png";
 import stakeholder from "../../assets/images/stakeholder.jpg";
@@ -64,8 +64,8 @@ const teamMembers = [
     name: "Noraiz Choudhary",
     designation: "Project Manager",
     linkedin: "https://www.linkedin.com/in/noraiz-choudhary-295734385/",
-    instagram: "https://instagram.com/example",
-    twitter: "https://twitter.com/example",
+    instagram: "https://www.instagram.com/noraiz.vertexai/",
+    twitter: "https://x.com/NoraizVertexai",
     image: pm
   },
   {
@@ -219,7 +219,7 @@ export default function OurTeam() {
                     target="_blank"
                     rel="noopener noreferrer"
                   >
-                    <FaTwitter size={23} />
+                    <FaXTwitter   size={23} />
                   </a>
                 </div>
               </div>
