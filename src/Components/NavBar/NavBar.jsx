@@ -83,7 +83,7 @@ const Navbar = () => {
 
           {/* Google Button */}
           <Link
-            to="#"
+            to="https://dev-token.vertexaitec.com/"
             target="_blank"
             rel="noopener noreferrer"
             className="google-btn"
@@ -133,7 +133,7 @@ const Navbar = () => {
 
         {/* Google Button for Mobile */}
         <Link
-          to="https://www.google.com"
+          to="https://dev-token.vertexaitec.com/"
           target="_blank"
           rel="noopener noreferrer"
           className="google-btn"
