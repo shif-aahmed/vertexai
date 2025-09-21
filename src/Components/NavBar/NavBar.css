@@ -283,12 +283,6 @@
   }
 }
 
-/* Additional small touches kept from original file (bottom rules) */
-/* Google Button (desktop fallback) */
-.google-btn {
-  /* margin-left is already set above — keep here for clarity */
-  /* margin-left: auto !important; */
-}
 
 /* Ensure google button never shows underline from any inherited rule */
 .google-btn,

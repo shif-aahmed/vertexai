@@ -83,12 +83,12 @@ const Navbar = () => {
 
           {/* Google Button */}
           <Link
-            to="https://www.google.com"
+            to="#"
             target="_blank"
             rel="noopener noreferrer"
             className="google-btn"
           >
-            Google
+            VertexAi Coin
           </Link>
         </div>
 
