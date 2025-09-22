@@ -28,7 +28,7 @@ const teamMembers = [
     name: "Umair Manzoor",
     designation: "Director",
     linkedin: "https://linkedin.com/in/bob",
-    instagram: "https://instagram.com/example",
+    instagram: "https://www.instagram.com/umair_manzoor/",
     twitter: "https://twitter.com/example",
     image: stakeholder,
   },
