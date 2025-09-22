@@ -12,6 +12,7 @@ import UI from "../../assets/images/ui-ux-manager.png";
 import reactNative from "../../assets/images/react-native-engineer.png";
 import aiIntern from "../../assets/images/ai-intern.png";
 import aiIntern2 from "../../assets/images/ai-intern2.jpg";
+import director from "../../assets/images/director.jpg";
 
 const teamMembers = [
   {
@@ -25,12 +26,12 @@ const teamMembers = [
   },
   {
     id: 2,
-    name: "Umair Manzoor",
-    designation: "Director",
-    linkedin: "https://linkedin.com/in/bob",
-    instagram: "https://www.instagram.com/umair_manzoor/",
-    twitter: "https://twitter.com/example",
-    image: stakeholder,
+    name: "Noraiz Choudhary",
+    designation: "Chief Operating Officer",
+    linkedin: "https://www.linkedin.com/in/noraiz-choudhary-295734385/",
+    instagram: "https://www.instagram.com/noraiz.vertexai/",
+    twitter: "https://x.com/NoraizVertexai",
+    image: pm,
   },
   {
     id: 3,
@@ -43,6 +44,24 @@ const teamMembers = [
   },
   {
     id: 4,
+    name: "Abdul Ahad",
+    designation: "Director",
+    linkedin: "https://www.linkedin.com/in/abdul-ahad-40b521386/",
+    instagram: "https://instagram.com/example",
+    twitter: "https://x.com/AbdulA22626",
+    image: director,
+  },
+  {
+    id: 5,
+    name: "Umair Manzoor",
+    designation: "Director",
+    linkedin: "https://www.linkedin.com/in/umair-manzoor-671012157?utm_source=share&utm_campaign=share_via&utm_content=profile&utm_medium=ios_app",
+    instagram: "https://www.instagram.com/umair_manzoor/",
+    twitter: "https://twitter.com/example",
+    image: stakeholder,
+  },
+  {
+    id: 6,
     name: "Aroob Tahir",
     designation: "HR Manager",
     linkedin: "http://www.linkedin.com/in/aroob-tahir-249526184",
@@ -51,7 +70,7 @@ const teamMembers = [
     image: hrManager,
   },
   {
-    id: 5,
+    id: 7,
     name: "Naima Zahir",
     designation: "HR Executive",
     linkedin: "http://www.linkedin.com/in/naeema-zahir-092257326",
@@ -60,16 +79,7 @@ const teamMembers = [
     image: hrExecutive,
   },
   {
-    id: 6,
-    name: "Noraiz Choudhary",
-    designation: "Project Manager",
-    linkedin: "https://www.linkedin.com/in/noraiz-choudhary-295734385/",
-    instagram: "https://www.instagram.com/noraiz.vertexai/",
-    twitter: "https://x.com/NoraizVertexai",
-    image: pm,
-  },
-  {
-    id: 7,
+    id: 8,
     name: "Muhammad Danish",
     designation: "UI/UX Designer",
     linkedin: "https://linkedin.com/in/george",
@@ -78,7 +88,7 @@ const teamMembers = [
     image: UI,
   },
   {
-    id: 8,
+    id: 9,
     name: "Muhammad Abdullah",
     designation: "React Native Engineer",
     linkedin: "https://linkedin.com/in/hannah",
@@ -87,7 +97,7 @@ const teamMembers = [
     image: reactNative,
   },
   {
-    id: 9,
+    id: 10,
     name: "Alishba Abbas",
     designation: "AI/ML Intern",
     linkedin: "https://linkedin.com/in/hannah",
@@ -96,7 +106,7 @@ const teamMembers = [
     image: aiIntern,
   },
   {
-    id: 10,
+    id: 11,
     name: "Ahmed Noor",
     designation: "AI/ML Intern",
     linkedin: "https://linkedin.com/in/hannah",
@@ -140,9 +150,7 @@ export default function OurTeam() {
       <section className="our-team">
         <div className="container">
           <h2
-            className={`heading heading-animated ${
-              animateHeading ? "animate" : ""
-            }`}
+            className={`heading heading-animated ${animateHeading ? "animate" : ""}`}
           >
             {"Meet the Team".split("").map((char, i) => (
               <span key={i} style={{ animationDelay: `${i * 0.05}s` }}>
@@ -209,8 +217,8 @@ export default function OurTeam() {
                     <FaLinkedin size={23} />
                   </a>
 
-                  {/* Instagram + Twitter only for IDs 1, 2, 6 */}
-                  {[1, 2, 6].includes(selectedMember.id) && (
+                  {/* Instagram + Twitter only for IDs 1, 2, 4, 5 */}
+                  {[1, 2, 4, 5].includes(selectedMember.id) && (
                     <>
                       <a
                         href={selectedMember.instagram}
