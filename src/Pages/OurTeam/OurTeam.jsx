@@ -13,6 +13,7 @@ import reactNative from "../../assets/images/react-native-engineer.png";
 import aiIntern from "../../assets/images/ai-intern.png";
 import aiIntern2 from "../../assets/images/ai-intern2.jpg";
 import director from "../../assets/images/director.jpg";
+import aiIntern3 from "../../assets/images/12.png";
 
 const teamMembers = [
   {
@@ -57,7 +58,7 @@ const teamMembers = [
     designation: "Director",
     linkedin: "https://www.linkedin.com/in/umair-manzoor-671012157?utm_source=share&utm_campaign=share_via&utm_content=profile&utm_medium=ios_app",
     instagram: "https://www.instagram.com/umair_manzoor/",
-    twitter: "https://twitter.com/example",
+    twitter: "https://x.com/umairma07536735?s=21",
     image: stakeholder,
   },
   {
@@ -82,7 +83,7 @@ const teamMembers = [
     id: 8,
     name: "Muhammad Danish",
     designation: "UI/UX Designer",
-    linkedin: "https://linkedin.com/in/george",
+    linkedin: "http://www.linkedin.com/in/muhammad-danish-ai",
     instagram: "https://instagram.com/example",
     twitter: "https://twitter.com/example",
     image: UI,
@@ -91,7 +92,7 @@ const teamMembers = [
     id: 9,
     name: "Muhammad Abdullah",
     designation: "React Native Engineer",
-    linkedin: "https://linkedin.com/in/hannah",
+    linkedin: "https://www.linkedin.com/in/muhammad-abdullah98?utm_source=share&utm_campaign=share_via&utm_content=profile&utm_medium=android_app",
     instagram: "https://instagram.com/example",
     twitter: "https://twitter.com/example",
     image: reactNative,
@@ -100,7 +101,7 @@ const teamMembers = [
     id: 10,
     name: "Alishba Abbas",
     designation: "AI/ML Intern",
-    linkedin: "https://linkedin.com/in/hannah",
+    linkedin: "https://www.linkedin.com/in/alishba-abbas-78b98a357?utm_source=share&utm_campaign=share_via&utm_content=profile&utm_medium=android_app",
     instagram: "https://instagram.com/example",
     twitter: "https://twitter.com/example",
     image: aiIntern,
@@ -109,10 +110,19 @@ const teamMembers = [
     id: 11,
     name: "Ahmed Noor",
     designation: "AI/ML Intern",
-    linkedin: "https://linkedin.com/in/hannah",
+    linkedin: "https://www.linkedin.com/in/ahmednoor440?utm_source=share&utm_campaign=share_via&utm_content=profile&utm_medium=android_app",
     instagram: "https://instagram.com/example",
     twitter: "https://twitter.com/example",
     image: aiIntern2,
+  },
+    {
+    id: 12,
+    name: "Abdullah Bajwa",
+    designation: "AI/ML Intern",
+    linkedin: "https://www.linkedin.com/in/abdullah--bajwa/",
+    instagram: "https://instagram.com/example",
+    twitter: "https://twitter.com/example",
+    image: aiIntern3,
   },
 ];
 
