@@ -47,7 +47,7 @@ const teamMembers = [
     name: "Abdul Ahad",
     designation: "Director",
     linkedin: "https://www.linkedin.com/in/abdul-ahad-40b521386/",
-    instagram: "https://instagram.com/example",
+    instagram: "https://www.instagram.com/ahadch.98?igsh=MWE0am9qNXhuZGExMg%3D%3D&utm_source=qr",
     twitter: "https://x.com/AbdulA22626",
     image: director,
   },
