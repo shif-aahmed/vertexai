@@ -7,7 +7,7 @@ import cto from "../../assets/images/cto.png";
 import stakeholder from "../../assets/images/stakeholder.jpg";
 import hrManager from "../../assets/images/hr-manager.png";
 import hrExecutive from "../../assets/images/hr-executive.png";
-import pm from "../../assets/images/pm.png";
+import pm from "../../assets/images/pm.jpg";
 import UI from "../../assets/images/ui-ux-manager.png";
 import reactNative from "../../assets/images/react-native-engineer.png";
 import aiIntern from "../../assets/images/ai-intern.png";
