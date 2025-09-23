@@ -29,7 +29,7 @@ const teamMembers = [
     id: 2,
     name: "Noraiz Choudhary",
     designation: "Chief Operating Officer",
-    linkedin: "https://www.linkedin.com/in/noraiz-choudhary-295734385/",
+    linkedin: "https://www.linkedin.com/in/noraiz-choudhary-27480a385?utm_source=share&utm_campaign=share_via&utm_content=profile&utm_medium=android_app",
     instagram: "https://www.instagram.com/noraiz.vertexai/",
     twitter: "https://x.com/NoraizVertexai",
     image: pm,
