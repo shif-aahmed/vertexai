@@ -22,7 +22,7 @@ const teamMembers = [
     designation: "Chief Executive Officer",
     linkedin: "https://www.linkedin.com/in/daud-ali-0006a532a/",
     instagram: "https://www.instagram.com/daud.alivertexai?utm_source=qr&igsh=N3V0MDdhY2FrMjkx",
-    twitter: "https://twitter.com/example",
+    twitter: "https://x.com/daudalivertexai?t=L8vY8ZR7dMbgOeQapD9b-g&s=09",
     image: ceo,
   },
   {
