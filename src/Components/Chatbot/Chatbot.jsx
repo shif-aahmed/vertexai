@@ -1,5 +1,6 @@
 import React, { useState } from "react";
 import { FaHeadset } from "react-icons/fa";
+import { CHATBOT_API_ENDPOINT } from "../../config";
 
 import "./Chatbot.css";
 
@@ -21,7 +22,7 @@ const Chatbot = () => {
     setIsLoading(true);
 
     try {
-      const response = await fetch("https://your-api-endpoint.com/chat", {
+      const response = await fetch(CHATBOT_API_ENDPOINT, {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify({ message: inputMessage }),
