@@ -154,14 +154,8 @@ const ContactUs = () => {
                 <i className="bi bi-envelope-fill me-2 text-info"></i>
                 info@vertexaitec.com
               </p>
-              <p>
-                <i className="bi bi-telephone-fill me-2 text-info"></i>
-                +1 (904) 835-8539
-              </p>
-              <p>
-                 <i className="bi bi-telephone-fill me-2 text-info"></i>
-                +971 55 290 0864
-              </p>
+
+
             </div>
 
             {/* Optional quick support */}

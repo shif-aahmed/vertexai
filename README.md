@@ -1,20 +1,78 @@
-# Vertex AI Portfolio
+# VertexAI Tec - AI Solutions Website
 
 ## Overview
-Vertex AI Portfolio is a professional portfolio website built with React.js. It showcases AI-related projects and skills with a clean, modern design aimed at impressing clients and employers.
+Company website for an AI solutions provider specializing in Google Cloud Vertex AI services.
 
-## Technologies Used
-- React.js (frontend)
-- JavaScript, HTML5, CSS3
+## Technologies
+- React 19.1.0, Vite, React Router
+- Bootstrap, Framer Motion, React Icons
+- Firebase (Auth, Firestore, Analytics)
+- Azure DevOps CI/CD
 
 ## Features
-- Clean and modern user interface.
-- Responsive design for all devices.
-- Sections for project showcase, skills, and contact.
-- Easy navigation and fast performance.
+- **Homepage**: Hero section, services showcase, about section, FAQ
+- **Services**: Advisory, Engineering, AI, Optimization, Deployment, Support
+- **Career Portal**: Job applications with Firebase authentication and CV upload
+- **Interactive Chatbot**: Real-time chat with configurable API
+- **Additional Pages**: Contact, Team, Blogs
+- **Responsive Design**: Mobile-first with scroll animations
 
-## How to Run
-1. Clone the repository.
-2. Run `npm install` to install dependencies.
-3. Run `npm start` to launch the development server.
-4. Visit `http://localhost:3000` in your browser.
+## Installation
+
+1. Clone repository and install dependencies:
+   ```bash
+   git clone <repository-url>
+   cd VertexAITec_Website
+   npm install
+   ```
+
+2. Configure Firebase:
+   - Update `src/firebase.js` with your Firebase config
+   - Enable Authentication and Firestore
+
+3. Configure Chatbot API:
+   - Update `src/config.js` with your API endpoint
+
+4. Start Vite development server:
+   ```bash
+   npm run dev
+   ```
+   The app will be available at `http://localhost:5173`
+
+5. Build for production:
+   ```bash
+   npm run build
+   ```
+
+6. Preview production build:
+   ```bash
+   npm run preview
+   ```
+
+## Project Structure
+
+```
+src/
+├── Components/          # UI components
+├── Pages/              # Main pages
+├── assets/             # Static assets
+├── config.js           # Configuration
+└── firebase.js         # Firebase setup
+```
+
+## Deployment
+
+- Azure DevOps pipelines included
+- Build: `npm run build`
+- Deploy `dist` folder to hosting service
+
+## Environment Variables
+
+```env
+VITE_FIREBASE_API_KEY=your_key
+VITE_FIREBASE_AUTH_DOMAIN=your_domain
+VITE_FIREBASE_PROJECT_ID=your_project
+VITE_CHATBOT_API_ENDPOINT=your_endpoint
+```
+
+
