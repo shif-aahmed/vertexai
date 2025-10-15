@@ -154,7 +154,10 @@ const ContactUs = () => {
                 <i className="bi bi-envelope-fill me-2 text-info"></i>
                 info@vertexaitec.com
               </p>
-
+              <p>
+                <i className="bi bi-telephone-fill me-2 text-info"></i>
+                +1 (270) 308-4115
+              </p>
 
             </div>
 
