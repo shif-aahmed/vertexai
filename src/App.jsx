@@ -1,12 +1,12 @@
 import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
-import HomePg from "./pages/HomePg/HomePg.jsx";
-import ContactUs from "./pages/ContactUs/ContactUs.jsx";
-import Navbar from "./components/NavBar/NavBar";
-import Footer from "./components/Footer/Footer";
-import Chatbot from "./components/Chatbot/Chatbot";
-import CareerPage from "./pages/CareerPage/CareerPage";
-import BlogsPage from "./pages/BlogsPage/BlogsPage";
-import OurTeam from "./pages/OurTeam/OurTeam";  
+import HomePg from "./Pages/HomePg/HomePg.jsx";
+import ContactUs from "./Pages/ContactUs/ContactUs.jsx";
+import Navbar from "./Components/NavBar/NavBar";
+import Footer from "./Components/Footer/Footer";
+import Chatbot from "./Components/Chatbot/Chatbot";
+import CareerPage from "./Pages/CareerPage/CareerPage";
+import BlogsPage from "./Pages/BlogsPage/BlogsPage";
+import OurTeam from "./Pages/OurTeam/OurTeam";  
 
 function App() {
   return (

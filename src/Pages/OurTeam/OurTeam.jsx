@@ -2,127 +2,116 @@ import React, { useState, useEffect } from "react";
 import HeroSection from "../../Components/HeroSection/HeroSection";
 import "./OurTeam.css";
 import { FaLinkedin, FaXTwitter, FaInstagram } from "react-icons/fa6";
-import ceo from "../../assets/images/ceo.png";
-import cto from "../../assets/images/cto.png";
-import stakeholder from "../../assets/images/stakeholder.jpg";
-import hrManager from "../../assets/images/hr-manager.png";
-import hrExecutive from "../../assets/images/hr-executive.png";
-import pm from "../../assets/images/pm.jpg";
-import UI from "../../assets/images/ui-ux-manager.png";
-import reactNative from "../../assets/images/react-native-engineer.png";
-import aiIntern from "../../assets/images/ai-intern.png";
-import aiIntern2 from "../../assets/images/ai-intern2.jpg";
-import director from "../../assets/images/director.jpg";
-import aiIntern3 from "../../assets/images/12.png";
+
 
 const teamMembers = [
   {
     id: 1,
-    name: "Daud Ali",
+    name: "Alex Carter",
     designation: "Chief Executive Officer",
-    linkedin: "https://www.linkedin.com/in/daud-ali-0006a532a/",
-    instagram: "https://www.instagram.com/daud.alivertexai?utm_source=qr&igsh=N3V0MDdhY2FrMjkx",
-    twitter: "https://x.com/daudalivertexai?t=L8vY8ZR7dMbgOeQapD9b-g&s=09",
-    image: ceo,
+    linkedin: "https://linkedin.com/in/example",
+    instagram: "https://instagram.com/example",
+    twitter: "https://twitter.com/example",
+    image: "https://i.pravatar.cc/300?img=1",
   },
   {
     id: 2,
-    name: "Noraiz Choudhary",
+    name: "Sophia Bennett",
     designation: "Chief Operating Officer",
-    linkedin: "https://www.linkedin.com/in/noraiz-choudhary-27480a385?utm_source=share&utm_campaign=share_via&utm_content=profile&utm_medium=android_app",
-    instagram: "https://www.instagram.com/noraiz.vertexai/",
-    twitter: "https://x.com/NoraizVertexai",
-    image: pm,
+    linkedin: "https://linkedin.com/in/example",
+    instagram: "https://instagram.com/example",
+    twitter: "https://twitter.com/example",
+    image: "https://i.pravatar.cc/300?img=2",
   },
   {
     id: 3,
-    name: "Rizwan Shehzad",
+    name: "Daniel Brooks",
     designation: "Chief Technology Officer",
-    linkedin: "https://www.linkedin.com/in/rizwan-shehzad-80b357166/",
+    linkedin: "https://linkedin.com/in/example",
     instagram: "https://instagram.com/example",
     twitter: "https://twitter.com/example",
-    image: cto,
+    image: "https://i.pravatar.cc/300?img=3",
   },
   {
     id: 4,
-    name: "Abdul Ahad",
+    name: "Liam Parker",
     designation: "Director",
-    linkedin: "https://www.linkedin.com/in/abdul-ahad-40b521386/",
-    instagram: "https://www.instagram.com/ahadch.98?igsh=MWE0am9qNXhuZGExMg%3D%3D&utm_source=qr",
-    twitter: "https://x.com/AbdulA22626",
-    image: director,
+    linkedin: "https://linkedin.com/in/example",
+    instagram: "https://instagram.com/example",
+    twitter: "https://twitter.com/example",
+    image: "https://i.pravatar.cc/300?img=4",
   },
   {
     id: 5,
-    name: "Umair Manzoor",
+    name: "Olivia Morgan",
     designation: "Director",
-    linkedin: "https://www.linkedin.com/in/umair-manzoor-671012157?utm_source=share&utm_campaign=share_via&utm_content=profile&utm_medium=ios_app",
-    instagram: "https://www.instagram.com/umair_manzoor/",
-    twitter: "https://x.com/umairma07536735?s=21",
-    image: stakeholder,
+    linkedin: "https://linkedin.com/in/example",
+    instagram: "https://instagram.com/example",
+    twitter: "https://twitter.com/example",
+    image: "https://i.pravatar.cc/300?img=5",
   },
   {
     id: 6,
-    name: "Aroob Tahir",
+    name: "Ethan Collins",
     designation: "HR Manager",
-    linkedin: "http://www.linkedin.com/in/aroob-tahir-249526184",
+    linkedin: "https://linkedin.com/in/example",
     instagram: "https://instagram.com/example",
     twitter: "https://twitter.com/example",
-    image: hrManager,
+    image: "https://i.pravatar.cc/300?img=6",
   },
   {
     id: 7,
-    name: "Naima Zahir",
+    name: "Mia Richardson",
     designation: "HR Executive",
-    linkedin: "http://www.linkedin.com/in/naeema-zahir-092257326",
+    linkedin: "https://linkedin.com/in/example",
     instagram: "https://instagram.com/example",
     twitter: "https://twitter.com/example",
-    image: hrExecutive,
+    image: "https://i.pravatar.cc/300?img=7",
   },
   {
     id: 8,
-    name: "Muhammad Danish",
+    name: "Noah Mitchell",
     designation: "UI/UX Designer",
-    linkedin: "http://www.linkedin.com/in/muhammad-danish-ai",
+    linkedin: "https://linkedin.com/in/example",
     instagram: "https://instagram.com/example",
     twitter: "https://twitter.com/example",
-    image: UI,
+    image: "https://i.pravatar.cc/300?img=8",
   },
   {
     id: 9,
-    name: "Muhammad Abdullah",
+    name: "Ava Thompson",
     designation: "React Native Engineer",
-    linkedin: "https://www.linkedin.com/in/muhammad-abdullah98?utm_source=share&utm_campaign=share_via&utm_content=profile&utm_medium=android_app",
+    linkedin: "https://linkedin.com/in/example",
     instagram: "https://instagram.com/example",
     twitter: "https://twitter.com/example",
-    image: reactNative,
+    image: "https://i.pravatar.cc/300?img=9",
   },
   {
     id: 10,
-    name: "Alishba Abbas",
+    name: "Lucas Walker",
     designation: "AI/ML Intern",
-    linkedin: "https://www.linkedin.com/in/alishba-abbas-78b98a357?utm_source=share&utm_campaign=share_via&utm_content=profile&utm_medium=android_app",
+    linkedin: "https://linkedin.com/in/example",
     instagram: "https://instagram.com/example",
     twitter: "https://twitter.com/example",
-    image: aiIntern,
+    image: "https://i.pravatar.cc/300?img=10",
   },
   {
     id: 11,
-    name: "Ahmed Noor",
+    name: "Emily Turner",
     designation: "AI/ML Intern",
-    linkedin: "https://www.linkedin.com/in/ahmednoor440?utm_source=share&utm_campaign=share_via&utm_content=profile&utm_medium=android_app",
+    linkedin: "https://linkedin.com/in/example",
     instagram: "https://instagram.com/example",
     twitter: "https://twitter.com/example",
-    image: aiIntern2,
+    image: "https://i.pravatar.cc/300?img=11",
   },
-    {
+  {
     id: 12,
-    name: "Abdullah Bajwa",
+    name: "James Foster",
     designation: "AI/ML Intern",
-    linkedin: "https://www.linkedin.com/in/abdullah--bajwa/",
+    linkedin: "https://linkedin.com/in/example",
     instagram: "https://instagram.com/example",
     twitter: "https://twitter.com/example",
-    image: aiIntern3,
+    image: "https://i.pravatar.cc/300?img=12",
   },
 ];
 

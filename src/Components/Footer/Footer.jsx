@@ -75,8 +75,8 @@ const Footer = () => {
             {/* Get In Touch */}
             <div className="footer-contact col-12 col-md-3">
               <h4>Get In Touch</h4>
-              <p>info@vertexaitec.com</p>
-              <p>+1 (270) 308-4115</p> 
+              <p>example@vertexaitec.com</p>
+              <p>+123456789</p> 
             </div>
           </div>
 

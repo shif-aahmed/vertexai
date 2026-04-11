@@ -152,11 +152,11 @@ const ContactUs = () => {
             <div className="mb-4">
               <p className="mb-4">
                 <i className="bi bi-envelope-fill me-2 text-info"></i>
-                info@vertexaitec.com
+                example@vertexaitec.com
               </p>
               <p>
                 <i className="bi bi-telephone-fill me-2 text-info"></i>
-                +1 (270) 308-4115
+                +123456789
               </p>
 
             </div>
