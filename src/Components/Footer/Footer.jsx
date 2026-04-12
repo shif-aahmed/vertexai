@@ -27,11 +27,11 @@ const Footer = () => {
               </div>
               <div className="footer-social">
                 <div className="social-icons">
-                  <a href="https://www.facebook.com/profile.php?id=61579347417539"><FaFacebookF /></a>
-                  <a href="https://www.instagram.com/vertexaitech/"><FaInstagram /></a>
-                  <a href="https://www.linkedin.com/company/vertexai-tec"><FaLinkedin /></a>
+                  <a href="https://www.facebook.com"><FaFacebookF /></a>
+                  <a href="https://www.instagram.com"><FaInstagram /></a>
+                  <a href="https://www.linkedin.com"><FaLinkedin /></a>
                   <a 
-                    href="https://wa.me/923390107478" 
+                    href="" 
                     target="_blank" 
                     rel="noopener noreferrer"
                   >                 
