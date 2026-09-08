@@ -1,16 +1,10 @@
+
 // File: BlogsPage.jsx
 import React, { useState, useEffect } from "react";
 import "./BlogsPage.css";
 import HeroSection from "../../Components/HeroSection/HeroSection";
 
-// Firebase imports
-import { auth, db } from "../../firebase";
-import {
-  createUserWithEmailAndPassword,
-  signInWithEmailAndPassword,
-  onAuthStateChanged,
-} from "firebase/auth";
-import { collection, addDoc, getDocs } from "firebase/firestore";
+const API_URL = "http://localhost:5000/api";
 
 const BlogsPage = () => {
   // Blog state
@@ -29,7 +23,11 @@ const BlogsPage = () => {
   });
 
   // Blog form
-  const [newBlog, setNewBlog] = useState({ title: "", content: "", author: "" });
+  const [newBlog, setNewBlog] = useState({
+    title: "",
+    content: "",
+    author: "",
+  });
 
   // Selected blog
   const [selectedBlog, setSelectedBlog] = useState(null);
@@ -37,109 +35,124 @@ const BlogsPage = () => {
   // Message state
   const [message, setMessage] = useState({ type: "", text: "" });
 
-  // Listen to Firebase Auth state
+  // Token state
+  const [token, setToken] = useState(localStorage.getItem("token") || "");
+
+  // Check if user is already logged in on mount
   useEffect(() => {
-    const unsubscribe = onAuthStateChanged(auth, (user) => {
-      if (user) {
-        setIsLoggedIn(true);
-      } else {
-        setIsLoggedIn(false);
-      }
-    });
-    return () => unsubscribe();
+    const savedToken = localStorage.getItem("token");
+    if (savedToken) {
+      setToken(savedToken);
+      setIsLoggedIn(true);
+    }
   }, []);
 
-  // Fetch blogs from Firestore
+  // Fetch blogs on mount
   useEffect(() => {
-    const fetchBlogs = async () => {
-      const snapshot = await getDocs(collection(db, "blogs"));
-      const blogList = snapshot.docs.map((doc) => ({
-        id: doc.id,
-        ...doc.data(),
-      }));
-      setBlogs(blogList);
-      if (blogList.length > 0) {
-        setSelectedBlog(blogList[0]);
-      }
-    };
     fetchBlogs();
   }, []);
 
-  // Format error messages into user-friendly text
-  const formatErrorMessage = (errorCode, context) => {
-    switch (errorCode) {
-      case "auth/user-not-found":
-        return "❌ Login failed: This account does not exist. Please sign up first.";
-      case "auth/wrong-password":
-        return "❌ Login failed: The password you entered is incorrect.";
-      case "auth/invalid-email":
-        return "❌ Login failed: Please enter a valid email address.";
-      case "auth/email-already-in-use":
-        return "❌ Signup failed: This email is already registered. Try logging in instead.";
-      case "auth/weak-password":
-        return "❌ Signup failed: Password should be at least 6 characters long.";
-      default:
-        return `❌ ${context} failed: Something went wrong. Please try again.`;
+  const fetchBlogs = async () => {
+    try {
+      const res = await fetch(`${API_URL}/blogs`);
+      const data = await res.json();
+      if (res.ok) {
+        setBlogs(data);
+        if (data.length > 0) {
+          setSelectedBlog(data[0]);
+        }
+      }
+    } catch (error) {
+      console.error("Error fetching blogs:", error);
     }
   };
 
-  // Handle login (Firebase)
+  // Handle login
   const handleLogin = async (e) => {
     e.preventDefault();
     try {
-      await signInWithEmailAndPassword(auth, loginForm.email, loginForm.password);
-      setShowLogin(false);
-      setMessage({ type: "success", text: "✅ Logged in successfully!" });
-    } catch (error) {
-      setMessage({
-        type: "error",
-        text: formatErrorMessage(error.code, "Login"),
+      const res = await fetch(`${API_URL}/auth/login`, {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify(loginForm),
       });
+      const data = await res.json();
+      if (res.ok) {
+        setToken(data.token);
+        localStorage.setItem("token", data.token);
+        setIsLoggedIn(true);
+        setShowLogin(false);
+        setMessage({ type: "success", text: "Login successful!" });
+        setLoginForm({ email: "", password: "" });
+      } else {
+        setMessage({ type: "error", text: data.message || "Login failed" });
+      }
+    } catch (error) {
+      setMessage({ type: "error", text: "Server error. Please try again." });
     }
   };
 
-  // Handle signup (Firebase)
+  // Handle signup
   const handleSignup = async (e) => {
     e.preventDefault();
     try {
-      await createUserWithEmailAndPassword(
-        auth,
-        signupForm.email,
-        signupForm.password
-      );
-      setShowLogin(false);
-      setIsSignup(false);
-      setMessage({ type: "success", text: "✅ Account created successfully!" });
-    } catch (error) {
-      setMessage({
-        type: "error",
-        text: formatErrorMessage(error.code, "Signup"),
+      const res = await fetch(`${API_URL}/auth/register`, {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify(signupForm),
       });
+      const data = await res.json();
+      if (res.ok) {
+        setMessage({
+          type: "success",
+          text: "Account created! Please login.",
+        });
+        setIsSignup(false);
+        setSignupForm({ name: "", email: "", password: "" });
+      } else {
+        setMessage({ type: "error", text: data.message || "Signup failed" });
+      }
+    } catch (error) {
+      setMessage({ type: "error", text: "Server error. Please try again." });
     }
+  };
+
+  // Handle logout
+  const handleLogout = () => {
+    setToken("");
+    localStorage.removeItem("token");
+    setIsLoggedIn(false);
+    setMessage({ type: "", text: "" });
   };
 
   // Handle new blog
   const handleSubmit = async (e) => {
     e.preventDefault();
-    if (!newBlog.title || !newBlog.content || !newBlog.author) return;
-
+    if (!newBlog.title || !newBlog.content) return;
     try {
-      const docRef = await addDoc(collection(db, "blogs"), {
-        ...newBlog,
-        createdAt: new Date().toISOString(),
+      const res = await fetch(`${API_URL}/blogs`, {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+          Authorization: `Bearer ${token}`,
+        },
+        body: JSON.stringify({
+          title: newBlog.title,
+          content: newBlog.content,
+        }),
       });
-
-      const newEntry = { id: docRef.id, ...newBlog };
-      setBlogs([newEntry, ...blogs]);
-      setNewBlog({ title: "", content: "", author: "" });
-      setSelectedBlog(newEntry);
-
-      setMessage({ type: "success", text: "✅ Blog published successfully!" });
-    } catch (err) {
-      setMessage({
-        type: "error",
-        text: "❌ Error saving blog. Please try again later.",
-      });
+      const data = await res.json();
+      if (res.ok) {
+        setNewBlog({ title: "", content: "", author: "" });
+        fetchBlogs();
+      } else {
+        setMessage({
+          type: "error",
+          text: data.message || "Failed to create blog",
+        });
+      }
+    } catch (error) {
+      setMessage({ type: "error", text: "Server error. Please try again." });
     }
   };
 
@@ -164,6 +177,11 @@ const BlogsPage = () => {
           {!isLoggedIn && (
             <button className="write-btn" onClick={() => setShowLogin(true)}>
               ✍️ Write a Blog
+            </button>
+          )}
+          {isLoggedIn && (
+            <button className="write-btn" onClick={handleLogout}>
+              Logout
             </button>
           )}
         </div>
@@ -192,16 +210,6 @@ const BlogsPage = () => {
                 }
                 required
               />
-              <input
-                type="text"
-                name="author"
-                placeholder="Your Name"
-                value={newBlog.author}
-                onChange={(e) =>
-                  setNewBlog({ ...newBlog, author: e.target.value })
-                }
-                required
-              />
               <button type="submit">Publish</button>
             </form>
           </div>
@@ -212,9 +220,9 @@ const BlogsPage = () => {
           <aside className="blogs-sidebar">
             {blogs.map((blog) => (
               <div
-                key={blog.id}
+                key={blog._id}
                 className={`blog-title ${
-                  selectedBlog?.id === blog.id ? "active" : ""
+                  selectedBlog?._id === blog._id ? "active" : ""
                 }`}
                 onClick={() => setSelectedBlog(blog)}
               >
@@ -253,7 +261,10 @@ const BlogsPage = () => {
                       placeholder="Email"
                       value={loginForm.email}
                       onChange={(e) =>
-                        setLoginForm({ ...loginForm, email: e.target.value })
+                        setLoginForm({
+                          ...loginForm,
+                          email: e.target.value,
+                        })
                       }
                       required
                     />
@@ -262,7 +273,10 @@ const BlogsPage = () => {
                       placeholder="Password"
                       value={loginForm.password}
                       onChange={(e) =>
-                        setLoginForm({ ...loginForm, password: e.target.value })
+                        setLoginForm({
+                          ...loginForm,
+                          password: e.target.value,
+                        })
                       }
                       required
                     />
@@ -278,7 +292,7 @@ const BlogsPage = () => {
                     </div>
                   </form>
                   <p className="switch-form">
-                    Don’t have an account?{" "}
+                    Don't have an account?{" "}
                     <span onClick={() => setIsSignup(true)}>Sign up</span>
                   </p>
                 </>
@@ -291,7 +305,10 @@ const BlogsPage = () => {
                       placeholder="Full Name"
                       value={signupForm.name}
                       onChange={(e) =>
-                        setSignupForm({ ...signupForm, name: e.target.value })
+                        setSignupForm({
+                          ...signupForm,
+                          name: e.target.value,
+                        })
                       }
                       required
                     />
@@ -300,7 +317,10 @@ const BlogsPage = () => {
                       placeholder="Email"
                       value={signupForm.email}
                       onChange={(e) =>
-                        setSignupForm({ ...signupForm, email: e.target.value })
+                        setSignupForm({
+                          ...signupForm,
+                          email: e.target.value,
+                        })
                       }
                       required
                     />

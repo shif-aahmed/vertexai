@@ -3,14 +3,7 @@ import React, { useState, useRef, useEffect } from "react";
 import "./CareerPage.css";
 import HeroSection from "../../Components/HeroSection/HeroSection";
 
-// Firebase imports
-import { auth, db } from "../../firebase";
-import {
-  createUserWithEmailAndPassword,
-  signInWithEmailAndPassword,
-  onAuthStateChanged,
-} from "firebase/auth";
-import { collection, addDoc } from "firebase/firestore";
+const API_URL = "http://localhost:5000/api";
 
 export default function CareerPage() {
   const [applicants, setApplicants] = useState([]);
@@ -36,19 +29,19 @@ export default function CareerPage() {
     password: "",
   });
 
-  // ✅ New: Message state
+  // Message state
   const [message, setMessage] = useState({ type: "", text: "" });
 
-  // ✅ Listen to Firebase auth state
+  // Token state
+  const [token, setToken] = useState(localStorage.getItem("token") || "");
+
+  // Check if user is already logged in on mount
   useEffect(() => {
-    const unsubscribe = onAuthStateChanged(auth, (user) => {
-      if (user) {
-        setIsLoggedIn(true);
-      } else {
-        setIsLoggedIn(false);
-      }
-    });
-    return () => unsubscribe();
+    const savedToken = localStorage.getItem("token");
+    if (savedToken) {
+      setToken(savedToken);
+      setIsLoggedIn(true);
+    }
   }, []);
 
   function validate() {
@@ -88,35 +81,49 @@ export default function CareerPage() {
     if (!validate()) return;
 
     try {
-      await addDoc(collection(db, "applications"), {
-        ...form,
-        fileName: file.name,
-        submittedAt: new Date().toISOString(),
+      const formData = new FormData();
+      formData.append("name", form.name);
+      formData.append("email", form.email);
+      formData.append("phone", form.phone);
+      formData.append("role", form.role);
+      formData.append("pitch", form.pitch);
+      formData.append("cv", file);
+
+      const res = await fetch(`${API_URL}/applications`, {
+        method: "POST",
+        headers: {
+          Authorization: `Bearer ${token}`,
+        },
+        body: formData,
       });
 
-      const id = Date.now();
-      const url = URL.createObjectURL(file);
-      const newApplicant = {
-        id,
-        ...form,
-        fileName: file.name,
-        fileUrl: url,
-        submittedAt: new Date().toISOString(),
-      };
+      const data = await res.json();
 
-      setApplicants((prev) => [newApplicant, ...prev]);
+      if (res.ok) {
+        const newApplicant = {
+          id: data.application._id,
+          ...form,
+          fileName: file.name,
+          fileUrl: URL.createObjectURL(file),
+          submittedAt: data.application.createdAt,
+        };
 
-      setForm({
-        name: "",
-        email: "",
-        phone: "",
-        role: form.role,
-        pitch: "",
-      });
-      setFile(null);
-      fileInputRef.current.value = null;
-      setErrors({});
-      setMessage({ type: "success", text: "Your application has been submitted successfully!" });
+        setApplicants((prev) => [newApplicant, ...prev]);
+
+        setForm({
+          name: "",
+          email: "",
+          phone: "",
+          role: form.role,
+          pitch: "",
+        });
+        setFile(null);
+        fileInputRef.current.value = null;
+        setErrors({});
+        setMessage({ type: "success", text: "Your application has been submitted successfully!" });
+      } else {
+        setMessage({ type: "error", text: data.message || "Failed to submit application." });
+      }
     } catch (error) {
       setMessage({ type: "error", text: "Something went wrong while submitting your application. Please try again." });
     }
@@ -126,11 +133,24 @@ export default function CareerPage() {
   const handleLogin = async (e) => {
     e.preventDefault();
     try {
-      await signInWithEmailAndPassword(auth, loginForm.email, loginForm.password);
-      setShowLogin(false);
-      setMessage({ type: "success", text: "You have logged in successfully!" });
+      const res = await fetch(`${API_URL}/auth/login`, {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify(loginForm),
+      });
+      const data = await res.json();
+      if (res.ok) {
+        setToken(data.token);
+        localStorage.setItem("token", data.token);
+        setIsLoggedIn(true);
+        setShowLogin(false);
+        setMessage({ type: "success", text: "You have logged in successfully!" });
+        setLoginForm({ email: "", password: "" });
+      } else {
+        setMessage({ type: "error", text: data.message || "Login failed. Please check your email and password." });
+      }
     } catch (error) {
-      setMessage({ type: "error", text: "Login failed. Please check your email and password." });
+      setMessage({ type: "error", text: "Server error. Please try again." });
     }
   };
 
@@ -138,13 +158,30 @@ export default function CareerPage() {
   const handleSignup = async (e) => {
     e.preventDefault();
     try {
-      await createUserWithEmailAndPassword(auth, signupForm.email, signupForm.password);
-      setShowLogin(false);
-      setIsSignup(false);
-      setMessage({ type: "success", text: "Your account has been created successfully! Please log in to continue." });
+      const res = await fetch(`${API_URL}/auth/register`, {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify(signupForm),
+      });
+      const data = await res.json();
+      if (res.ok) {
+        setMessage({ type: "success", text: "Your account has been created successfully! Please log in to continue." });
+        setIsSignup(false);
+        setSignupForm({ name: "", email: "", password: "" });
+      } else {
+        setMessage({ type: "error", text: data.message || "Signup failed. Please try again." });
+      }
     } catch (error) {
-      setMessage({ type: "error", text: "Signup failed. Please try again with a different email or password." });
+      setMessage({ type: "error", text: "Server error. Please try again." });
     }
+  };
+
+  // Logout handler
+  const handleLogout = () => {
+    setToken("");
+    localStorage.removeItem("token");
+    setIsLoggedIn(false);
+    setMessage({ type: "", text: "" });
   };
 
   // Scroll-triggered animation effect
@@ -169,7 +206,7 @@ export default function CareerPage() {
       <HeroSection
         heading1="Join VertexAI"
         heading2="Build the Future of Intelligent Apps"
-        heading3="We’re a small, fast-moving team focused on AI-powered tools and delightful experiences. Upload your CV and tell us how you can contribute to our mission."
+        heading3="We're a small, fast-moving team focused on AI-powered tools and delightful experiences. Upload your CV and tell us how you can contribute to our mission."
         heading1Class="contact-heading1"
         heading2Class="contact-heading2"
         heading3Class="contact-heading3"
@@ -184,12 +221,17 @@ export default function CareerPage() {
                 Join VertexAI — Build the future of intelligent apps
               </h1>
               <p className="hero-sub">
-                We’re a fast-moving team focused on friendly AI tools and
+                We're a fast-moving team focused on friendly AI tools and
                 delightful UX. Upload your CV and tell us about yourself.
               </p>
               {!isLoggedIn && (
                 <button className="cta-btn" onClick={() => setShowLogin(true)}>
                   Apply Now
+                </button>
+              )}
+              {isLoggedIn && (
+                <button className="cta-btn" onClick={handleLogout}>
+                  Logout
                 </button>
               )}
             </div>
@@ -222,6 +264,12 @@ export default function CareerPage() {
                   We read every submission. Please include a short paragraph
                   about what excites you and links to work (if any).
                 </p>
+
+                {message.text && (
+                  <div className={`message-box ${message.type}`}>
+                    {message.text}
+                  </div>
+                )}
 
                 <form className="apply-form" onSubmit={handleSubmit} noValidate>
                   <div className="row">
@@ -422,7 +470,7 @@ export default function CareerPage() {
                     </div>
                   </form>
                   <p className="switch-form">
-                    Don’t have an account?{" "}
+                    Don't have an account?{" "}
                     <span
                       style={{ cursor: "pointer" }}
                       onClick={() => setIsSignup(true)}
