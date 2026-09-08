@@ -4,7 +4,7 @@ import React, { useState, useEffect } from "react";
 import "./BlogsPage.css";
 import HeroSection from "../../Components/HeroSection/HeroSection";
 
-const API_URL = "http://localhost:5000/api";
+const API_URL = "https://vertexai-backend-1.onrender.com/";
 
 const BlogsPage = () => {
   // Blog state

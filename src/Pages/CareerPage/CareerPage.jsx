@@ -3,7 +3,7 @@ import React, { useState, useRef, useEffect } from "react";
 import "./CareerPage.css";
 import HeroSection from "../../Components/HeroSection/HeroSection";
 
-const API_URL = "http://localhost:5000/api";
+const API_URL = "https://vertexai-backend-1.onrender.com/";
 
 export default function CareerPage() {
   const [applicants, setApplicants] = useState([]);
